@@ -7,7 +7,6 @@
   </div>
 </template>
 
-
 <script>
 import axios from "axios";
 export default {
@@ -20,7 +19,7 @@ export default {
   computed: {},
   methods: {
     send() {
-      var data = JSON.stringify({ mail:this.usuario, pass: this.pass });
+      var data = JSON.stringify({ mail: this.usuario, pass: this.pass });
 
       var config = {
         method: "post",
@@ -28,7 +27,7 @@ export default {
         headers: {
           "Content-Type": "application/json",
         },
-        data:data        
+        data: data,
       };
 
       axios(config)
@@ -43,6 +42,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
