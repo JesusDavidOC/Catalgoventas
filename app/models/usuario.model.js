@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -63,16 +62,22 @@ UsuarioSchema.methods.generateAuthToken = async function () {
 }
 
 UsuarioSchema.statics.findByCredentials = async (mail, pass) => {
-    // Search for a user by email and password.
-    const user = await User.findOne({ mail })
-    if (!user) {
-        throw new Error({ error: 'Invalid login credentials' })
-    }
-    const isPasswordMatch = await bcrypt.compare(password, user.password)
-    if (!isPasswordMatch) {
-        throw new Error({ error: 'Invalid login credentials' })
-    }
-    return user
+    // Search for a user by email and password.       
+    try{
+        const user = await User.findOne({ mail })
+        if (!user) {
+            throw new Error({ error: 'Invalid login credentials' })
+        }
+        const isPasswordMatch = await bcrypt.compare(pass, user.pass)
+        if (!isPasswordMatch) {
+            throw new Error({ error: 'Invalid login credentials' })
+        }
+        return user
+    } catch(error){
+        console.log(error)
+    }    
 }
 
-module.exports = mongoose.model('Usuario', UsuarioSchema);
+const User = mongoose.model('Usuario', UsuarioSchema);
+
+module.exports = User

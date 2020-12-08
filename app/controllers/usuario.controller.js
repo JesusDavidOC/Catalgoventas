@@ -33,13 +33,13 @@ exports.findOne = (req, res) => {
 exports.login = async (req, res) => {  
     
     try {
-        const { mail, pass } = req.body
-        console.log(mail + "..." + pass)
-        const user = await usuario.findByCredentials(mail, pass)
+        const { mail, pass } = req.body        
+        const user = await usuario.findByCredentials(mail, pass)    
         if (!user) {
            return res.status(401).send({error: 'Login failed! Check authentication credentials'})
-        }
-        const token = await suario.generateAuthToken()
+        }        
+        const token = await user.generateAuthToken()   
+        console.log(user)     
         res.send({ user, token })
      } catch (error) {
         res.status(400).send(error)
