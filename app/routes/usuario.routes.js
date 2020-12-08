@@ -5,7 +5,7 @@ module.exports = (app) => {
     // List all Products
     app.get('/usuarios', usuario.findAll);
     //login with mail an pass
-    app.post('/loginUser', usuario.login);
+    app.post('/usuarios/login', usuario.login);
     // Get a single Product by id
     app.get('/usuarios/:id', usuario.findOne);
     // Update a Product by id

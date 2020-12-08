@@ -13,8 +13,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      usuario: "",
-      pass: "",
+      usuario: "palasque123sea@gmail1.com",
+      pass: "palas",
     };
   },
   computed: {},
@@ -24,7 +24,7 @@ export default {
 
       var config = {
         method: "post",
-        url: "http://localhost:8000/loginUser",
+        url: "http://localhost:8000/usuarios/login",
         headers: {
           "Content-Type": "application/json",
         },
@@ -33,7 +33,7 @@ export default {
 
       axios(config)
         .then(function (response) {
-          console.log(response.data);
+          console.log(response);
         })
         .catch(function (error) {
           console.log(error);
