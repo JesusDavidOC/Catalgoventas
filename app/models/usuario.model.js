@@ -27,9 +27,6 @@ const UsuarioSchema = mongoose.Schema({
     phone: {
         type: Number,
         unique: true
-    },
-    account: {
-        type: { String, enum: ['Moroso', 'Paz y salvo'] }
     }
 }, {
     timestamps: true
