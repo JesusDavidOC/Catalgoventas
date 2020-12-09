@@ -55,14 +55,14 @@ export default {
 
     validar() {
        
-        if(this.usuario.name==""){
+        if(this.tienda.name==""){
             alert("El campo Nombre no debe estar vacío");
         }
-        if(this.usuario.category==""){
-            alert("Debe seleccionar una imágen");
+        if(this.tienda.category==""){
+            alert("Debe seleccionar una categoría");
         }
-        if(this.usuario.country==""){
-            alert("El campo Descripción no debe estar vacío");
+        if(this.tienda.country==""){
+            alert("El campo Ciudad no debe estar vacío");
         }
     },
   },

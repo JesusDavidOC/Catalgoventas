@@ -17,7 +17,7 @@
                     <input type="text" id="name" required="" v-model="producto.name">
 
                     <label for="desciption">Descripción:</label>
-                    <input type="text" id="name" required="" v-model="producto.description">
+                    <input type="text" id="descrption" required="" v-model="producto.description">
 
                     <label for="price">Precio:</label>
                     <input type="Number" id="price" required="" v-model="producto.price">
@@ -57,21 +57,23 @@ export default {
     methods: {
 
     validar() {
-        if(this.usuario.image==""){
+        if(this.producto.image==""){
             alert("Debe seleccionar una imágen");
         }
-        if(this.usuario.name==""){
+        if(this.producto.name==""){
             alert("El campo Nombre no debe estar vacío");
         }
-        if(this.usuario.description==""){
+        if(this.productousuario.description==""){
             alert("El campo Descripción no debe estar vacío");
         }
-        if(this.usuario.price==""){
+        if(this.producto.price==""){
             alert("El campo Precio no debe estar vacío");
+        }else if(this.producto.price!=Number){
+            alert("En el campo Precio debe ingresar un valor numérico");
         }
-        if(this.usuario.cant==""){
+        if(this.producto.cant==""){
             alert("El campo Cantidad no debe estar vacío");
-        }else if(this.usuario.cant!=Number){
+        }else if(this.producto.cant!=Number){
             alert("En el campo Cantidad debe ingresar un valor numérico");
         }
     },
