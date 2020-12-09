@@ -28,11 +28,11 @@ const app = express();
 ////////////////////////////////////////////////////////////////////////
 // Parse requests of content-type - "application/x-www-form-urlencoded"
 app.use(bodyParser.urlencoded({ extended: true }))
-// Parse requests of content-type - "application/json"
+    // Parse requests of content-type - "application/json"
 app.use(bodyParser.json())
-// Activate the CORS access on all routes
+    // Activate the CORS access on all routes
 app.use(cors(corsOptions))
-// Listening server port
+    // Listening server port
 var port = process.env.PORT || 8000;
 
 
@@ -42,23 +42,23 @@ var port = process.env.PORT || 8000;
 const Product = require('./app/routes/producto.routes.js')(app);
 const User = require('./app/routes/usuario.routes.js')(app);
 app.get('/', (req, res) => {
- res.json({
- "message": "This is a JSON response to a HTTP GET request. alv "
- });
+    res.json({
+        "message": "This is a JSON response to a HTTP GET request. alv "
+    });
 });
 
 
 mongoose.connect(dbConfig.url, dbConfig.options)
-.then(() => {
- console.log("Connect to database: success!");
-}).catch(err => {
- console.log('Connect to database: failure!');
- process.exit();
-});
+    .then(() => {
+        console.log("Connect to database: success!");
+    }).catch(err => {
+        console.log('Connect to database: failure!');
+        process.exit();
+    });
 
 
 // Start the server with selected configuration [5]
 ////////////////////////////////////////////////////////////////////////
 app.listen(port, () => {
- console.log("Server is listening on port " + port);
+    console.log("Server is listening on port " + port);
 });

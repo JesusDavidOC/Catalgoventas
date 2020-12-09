@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-3">
+        <div class="col-sm-9">
+            <Hello msg="Hola la vida" />
+        </div>
+        <div class="col-sm-2">
             <b-button variant="success">Vende tus productos</b-button>
         </div>
     </div>
@@ -23,17 +25,7 @@
             </div>
           </div>
 
-          <div class="anuncio">
-            <img src="../../img/2.jpg" alt="Producto 2" />
-            <div class="contenido-anuncio">
-              <h3>Camiseta Angular</h3>
-              <p>Camiseta tipo algodon...</p>
-              <p class="precio">$20.000</p>
-              <button class="boton boton-amarillo d-block">
-                Añadir al carrito
-              </button>
-            </div>
-          </div>
+          <Tarjeta image="../../img/1.jpg" name="Camiseta Vue" description="Camiseta en algodon" price="20.000"></Tarjeta>
 
           <div class="anuncio">
             <img src="../../img/3.jpg" alt="Producto 3" />
@@ -89,7 +81,12 @@
 </template>
 
 <script>
-export default {};
+import Tarjeta from '../components/TarjetaProducto' 
+export default {
+    components: {
+        Tarjeta
+    }
+};
 </script>
 
 <style scoped>
