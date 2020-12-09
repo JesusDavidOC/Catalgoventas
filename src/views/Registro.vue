@@ -20,7 +20,7 @@
                 </form>
 
                 <div id="formFooter">
-                    <a class="underlineHover" href="index.php">Log In</a>
+                    <router-link to="/Login">Login</router-link>
                 </div>
 
         </div>

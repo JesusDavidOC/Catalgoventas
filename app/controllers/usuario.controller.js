@@ -1,6 +1,7 @@
 const usuario = require('../models/usuario.model.js');
+const bcrypt = require('bcryptjs')
 // Create and save a new Product
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     // Validate if the request's body is empty
     // (does not include required data)
     console.log(req.body);
@@ -9,23 +10,14 @@ exports.create = (req, res) => {
             message: "User data can not be empty"
         });
     }
-    // Create a new Product with request's data
-    const user = new usuario({
-        name: req.body.name,
-        mail: req.body.mail,
-        pass: req.body.pass,
-        country: req.body.country,
-        phone: req.body.phone
-    });
-    // Save the Product in the database
-    user.save()
-        .then(data => {
-            res.status(200).send(data);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Something wrong occurred while creating the record."
-            });
-        });
+    try {
+        const user = new usuario(req.body)
+        await user.save()
+        const token = await user.generateAuthToken()
+        res.status(201).send({ user, token })
+     } catch (error) {
+        res.status(400).send(error+"hi")
+     }
 };
 // Retrieve and list all Products
 exports.findAll = (req, res) => {
@@ -38,26 +30,20 @@ exports.findOne = (req, res) => {
     })
 };
 
-exports.login = (req, res) => {   
-    usuario.find({ mail: req.body.mail, pass: req.body.pass }).then(user => {
+exports.login = async (req, res) => {  
+    
+    try {
+        const { mail, pass } = req.body        
+        const user = await usuario.findByCredentials(mail, pass)    
         if (!user) {
-            return res.status(404).send({
-                message: "1user or pass incorrect:" + req.params.mail
-            });
-        }
-        console.log(user[0])
-        res.status(200).send(user[0].body);
-    }).catch(err => {
-        if (err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "user or pass incorrect:" + req.params.mail
-            });
-        }
-        return res.status(500).send({
-            message: "Something wrong ocurred while retrieving the record with id:"
-                + req.params.id
-        });
-    });
+           return res.status(401).send({error: 'Login failed! Check authentication credentials'})
+        }        
+        const token = await user.generateAuthToken()   
+        console.log(user)     
+        res.send({ user, token })
+     } catch (error) {
+        res.status(400).send(error)
+     }
 
 };
 // Update a Product by its id
