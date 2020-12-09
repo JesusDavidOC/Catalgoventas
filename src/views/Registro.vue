@@ -5,13 +5,13 @@
                     <h1>Registro de Usuario</h1>
                 </div>
                 <form id="frmRegistro" method="post" onsubmit="return agregarUsuarioNuevo()" autocomplete="off">
-                    <input type="text" class="fadeIn second form-control" placeholder="Nombre" required="" v-model="usuario">
-                    <input type="email" class="fadeIn second form-control" placeholder="Correo" required="" v-model="mail">
-                    <input type="password" class="fadeIn third form-control" placeholder="Constraseña" required="" v-model="pass">
-                    <input type="text" class="fadeIn third form-control" placeholder="Ciudad" required="" v-model="country">
-                    <input type="text" class="fadeIn third form-control" placeholder="Teléfono" required="" v-model="phone">
+                    <input type="text" class="fadeIn second form-control" placeholder="Nombre" required="" v-model="usuario.name">
+                    <input type="email" class="fadeIn second form-control" placeholder="Correo" required="" v-model="usuario.mail">
+                    <input type="password" class="fadeIn third form-control" placeholder="Constraseña" required="" v-model="usuario.pass">
+                    <input type="text" class="fadeIn third form-control" placeholder="Ciudad" required="" v-model="usuario.country">
+                    <input type="text" class="fadeIn third form-control" placeholder="Teléfono" required="" v-model="usuario.phone">
     
-                    <button class="fadeIn fourth" v-on:click="send()">Registrar</button>
+                    <button class="fadeIn fourth" v-on:click="validar()">Registrar</button>
                 </form>
 
                 <div id="formFooter">
@@ -28,12 +28,24 @@ import axios from "axios";
 export default {
   data() {
     return {
-      usuario: "",
-      pass: "",
+      usuario:{
+          name: "",
+          mail: "",
+          pass: "",
+          country: "",
+          phone: ""
+      }
     };
   },
   computed: {},
   methods: {
+
+    validar() {
+        if(this.usuario.name==""){
+            console.log("Nombre vacío")
+        }        
+    },
+    
     send() {
       var data = JSON.stringify({ mail: this.usuario, pass: this.pass });
 
