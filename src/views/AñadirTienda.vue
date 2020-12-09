@@ -29,7 +29,7 @@
             </form>
             <div class="">
                 <router-link class="a button" to="/Principal">Atrás</router-link>
-                <button v-on:click="validar()>Registrar tienda</button>
+                <button v-on:click="validar()">Registrar tienda</button>
             </div>
         </div>
     </div>

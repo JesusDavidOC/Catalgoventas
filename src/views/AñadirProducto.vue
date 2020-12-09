@@ -29,7 +29,7 @@
             </form>
             <div class="">
                 <router-link class="a button" to="/Principal">Atrás</router-link>
-                <button class="btn btn-comprar" v-on:click="validar()>Añadir</button>
+                <button class="btn btn-comprar" v-on:click="validar()">Añadir</button>
             </div>
         </div>
     </div>
