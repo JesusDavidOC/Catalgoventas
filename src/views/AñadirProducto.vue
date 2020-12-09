@@ -2,7 +2,6 @@
     <div>
         <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
         <div class="contenedor seccion contenido-centrado">
-            <h2 class="fw-300 centrar-texto">Llena el Formulario</h2>
 
             <form action="">
                 <fieldset>
@@ -11,38 +10,75 @@
 
                     <label for="name">Imágen:</label>
                     <div class="forma-contacto">
-                        <div class="image"><input type="text" id="name" required></div>
+                        <div class="image"><input type="text" id="name" required="" v-model="producto.image"></div>
                         <button class="btn-seleccionar">Seleccionar</button>
                     </div>
                     <label for="name">Nombre:</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" required="" v-model="producto.name">
 
                     <label for="desciption">Descripción:</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" required="" v-model="producto.description">
 
                     <label for="price">Precio:</label>
-                    <input type="Number" id="price" required>
+                    <input type="Number" id="price" required="" v-model="producto.price">
 
                     <label for="amount">Cantidad disponible:</label>
-                    <input type="Number" id="amount" required>
+                    <input type="Number" id="amount" required="" v-model="producto.amount">
 
                 </fieldset>
             </form>
             <div class="">
                 <router-link class="a button" to="/Principal">Atrás</router-link>
-                <button class="btn btn-comprar">Añadir</button>
+                <button class="btn btn-comprar" v-on:click="validar()">Añadir</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from "axios";
 import Header from '../components/Header'
 export default {
     components: {
         Header
-    }
+    },
+    data() {
+        return {
+            producto:{
+                image: "",
+                name: "",
+                description: "",
+                price: "",
+                cant: ""
+            }
+        };
+    },
+    computed: {},
+    methods: {
+
+    validar() {
+        if(this.usuario.image==""){
+            alert("Debe seleccionar una imágen");
+        }
+        if(this.usuario.name==""){
+            alert("El campo Nombre no debe estar vacío");
+        }
+        if(this.usuario.description==""){
+            alert("El campo Descripción no debe estar vacío");
+        }
+        if(this.usuario.price==""){
+            alert("El campo Precio no debe estar vacío");
+        }
+        if(this.usuario.cant==""){
+            alert("El campo Cantidad no debe estar vacío");
+        }else if(this.usuario.cant!=Number){
+            alert("En el campo Cantidad debe ingresar un valor numérico");
+        }
+    },
+  },
 };
+
+
 </script>
 
 <style scoped>
