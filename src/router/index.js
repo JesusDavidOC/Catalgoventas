@@ -132,7 +132,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     const isProtected = to.matched.some(item => item.meta.isProtected)
     if (isProtected && store.state.token == null) {
-        console.log(ey)
         next('/Login');
     } else {
         next()

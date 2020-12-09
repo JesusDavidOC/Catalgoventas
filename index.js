@@ -41,6 +41,7 @@ var port = process.env.PORT || 8000;
 
 const Product = require('./app/routes/producto.routes.js')(app);
 const User = require('./app/routes/usuario.routes.js')(app);
+const Tienda = require('./app/routes/tienda.routes.js')(app);
 app.get('/', (req, res) => {
     res.json({
         "message": "This is a JSON response to a HTTP GET request. alv "

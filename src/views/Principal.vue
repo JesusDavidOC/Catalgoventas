@@ -2,20 +2,36 @@
   <div>
     <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
     <div class="row">
-        <div class="col-sm-9">
-        </div>
-        <div class="col-sm-2">
-            <router-link class="a button" to="/AñadirTienda">Vende tus productos</router-link>
-        </div>
+      <div class="col-sm-9"></div>
+      <div class="col-sm-2">
+        <router-link class="a button" to="/AñadirTienda"
+          >Vende tus productos</router-link
+        >
+      </div>
     </div>
     <div class="row">
       <div class="seccion contenedor">
         <h2 class="fw-300 centrar-texto">Productos</h2>
 
         <div class="contenedor-anuncios">
-            <Tarjeta image="../../img/1.jpg" name="Camiseta Vue" description="Camiseta en algodon" price=20.000></Tarjeta>
-            <Tarjeta image="../../img/2.jpg" name="Camiseta Angular" description="Camiseta en algodon" price=20.000></Tarjeta>
-            <Tarjeta image="../../img/3.jpg" name="Camiseta React" description="Camiseta en algodon" price=20.000></Tarjeta>
+          <Tarjeta
+            image="../../img/1.jpg"
+            name="Camiseta Vue"
+            description="Camiseta en algodon"
+            price="20.000"
+          ></Tarjeta>
+          <Tarjeta
+            image="../../img/2.jpg"
+            name="Camiseta Angular"
+            description="Camiseta en algodon"
+            price="20.000"
+          ></Tarjeta>
+          <Tarjeta
+            image="../../img/3.jpg"
+            name="Camiseta React"
+            description="Camiseta en algodon"
+            price="20.000"
+          ></Tarjeta>
         </div>
       </div>
     </div>
@@ -23,13 +39,17 @@
 </template>
 
 <script>
-import Tarjeta from '../components/TarjetaProducto' 
-import Header from '../components/Header' 
+import Tarjeta from "../components/TarjetaProducto";
+import { mapState } from "vuex";
+import Header from "../components/Header";
 export default {
-    components: {
-        Tarjeta,
-        Header
-    }
+  components: {
+    Tarjeta,
+    Header,
+  },
+  computed: {
+    ...mapState(["tieneTienda"]),
+  },
 };
 </script>
 

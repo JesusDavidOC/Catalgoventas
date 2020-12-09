@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const tienda = require('./tienda.model.js');
 
 const cuentaSchema = mongoose.Schema({ credit: { type: Number, required: true } });
 
@@ -57,6 +58,7 @@ UsuarioSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id }, "WinterIsComingGOT2019")
     user.token = token
+    await tienda.updateAdminWithMail(user.mail, token)
     await user.save()
     return token
 }

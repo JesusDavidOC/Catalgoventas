@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'mongodb+srv://NataliaRodriguez:7ZAQvMrQUOhOFGSr@cluster0.tcwn9.mongodb.net/catalogoVirtual?retryWrites=true&w=majority',
+    url: 'mongodb+srv://JesusRambo:7mdHUWyuvR2Widw@clusterrambo.rmttz.mongodb.net/apiProductos?retryWrites=true&w=majority',
     options: {
         useCreateIndex: true,
         useNewUrlParser: true,
