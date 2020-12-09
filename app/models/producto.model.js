@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+
+
 const ProductoSchema = mongoose.Schema({
     name: {
         type: String,
@@ -7,12 +9,12 @@ const ProductoSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 4
-    },
+    },   
     price: {
         type: Number,
         min: 10
     },
-    expiration: Date
+    amount: Number,
 }, {
     timestamps: true
 });

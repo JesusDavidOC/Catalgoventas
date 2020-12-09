@@ -7,7 +7,10 @@ Vue.use(VueRouter)
 const routes = [{
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta:{
+          isProtected: true
+        }
     },
     {
         path: '/Login',
@@ -20,14 +23,14 @@ const routes = [{
         }
     },
     {
-        path: '/registro',
+        path: '/Registro',
         name: 'Registro',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Registro.vue')
-        }
+        },        
     },
     {
         path: '/Principal',
@@ -37,18 +40,24 @@ const routes = [{
         // which is lazy-loaded when the route is visited.
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Principal.vue')
+        },
+        meta:{
+          isProtected: true
         }
     },
-    {
+    /*{
         path: '/Carrito',
         name: 'Carrito',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: function() {
-            return import ( /* webpackChunkName: "about" */ '../views/Carrito.vue')
+            return import ('../views/Carrito.vue')
+        },
+        meta:{
+          isProtected: true
         }
-    }
+    }*/
 ]
 
 const router = new VueRouter({

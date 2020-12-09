@@ -1,26 +1,42 @@
 <template>
-    <div class="wrapper fadeInDown">
-            <div id="formContent">
-                <div class="fadeIn first">
-                    <h1>Login</h1>
-                </div>
-                <form id="frmRegistro" method="post" onsubmit="return agregarUsuarioNuevo()" autocomplete="off">
-                  <input placeholder="Nombre de usuario" type="text" v-model="usuario" class="fadeIn second"/>
-                  <input placeholder="Contraseña" type="text" v-model="pass" class="fadeIn third" />
-                  <button class="fadeIn fourth" v-on:click="send()">hola</button> 
-                </form>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <h1>Login</h1>
+      </div>
+      <form
+        id="frmRegistro"
+        method="post"
+        onsubmit="return agregarUsuarioNuevo()"
+        autocomplete="off"
+      >
+        <input
+          placeholder="Nombre de usuario"
+          type="text"
+          v-model="usuario.mail"
+          class="fadeIn second"
+        />
+        <input
+          placeholder="Contraseña"
+          type="text"
+          v-model="usuario.pass"
+          class="fadeIn third"
+        />
+        <button class="fadeIn fourth" v-on:click="send()">hola</button>
+      </form>
 
-                <div id="formFooter">
-                    <p>¿Aún no estás registrado?</p>
-                    <router-link class="underlineHover a" to="/Registro">Registro</router-link>
-                </div>
-
-        </div>
+      <div id="formFooter">
+        <p>¿Aún no estás registrado?</p>
+        <router-link class="underlineHover a" to="/Registro"
+          >Registro</router-link
+        >
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
+import { mapActions } from "vuex";
 import axios from "axios";
 export default {
   data() {
@@ -33,7 +49,7 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(['login'])
+    ...mapActions(["login"]),
   },
 };
 </script>
@@ -243,7 +259,7 @@ export default {
           opacity: 1;
       }
   }
-}
+
 
 @-moz-keyframes fadeIn {
   from {
@@ -311,12 +327,8 @@ export default {
   .underlineHover:hover:after {
       width: 100%;
   }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
+  
+
 
   h1 {
       color: #fff;
