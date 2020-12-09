@@ -5,7 +5,8 @@
       <router-link to="/Login">Login</router-link> |
       <router-link to="/Principal">Store</router-link>|
       <router-link to="/Registro">Register</router-link> |
-      <router-link to="/Carrito">Carrito</router-link>
+      <router-link to="/Carrito">Carrito</router-link> |
+      <router-link to="/Añadir">Añadir</router-link>
     </div>
     <router-view />
   </div>

@@ -9,14 +9,10 @@ const ProductoSchema = mongoose.Schema({
         required: true,
         trim: true,
         minlength: 4
-<<<<<<< HEAD
     },
     description: {
         type: String
     },
-=======
-    },   
->>>>>>> e84c394a6e730c80bbb0f49ee60ef218ea90c639
     price: {
         type: Number,
         min: 10

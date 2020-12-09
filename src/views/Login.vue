@@ -28,8 +28,7 @@
       <div id="formFooter">
         <p>¿Aún no estás registrado?</p>
         <router-link class="underlineHover a" to="/Registro"
-          >Registro</router-link
-        >
+          >Registro</router-link>
       </div>
     </div>
   </div>
