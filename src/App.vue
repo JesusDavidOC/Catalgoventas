@@ -8,6 +8,18 @@
   </div>
 </template>
 
+<script>
+import {mapActions} from 'vuex'
+export default {
+  methods:{
+    ...mapActions(['getToken'])
+  }, 
+  created(){
+    this.getToken();
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

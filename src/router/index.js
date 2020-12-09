@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta:{
+      rutaProtegida: true
+    }
   },
   {
     path: '/Login',
@@ -25,4 +29,12 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next)=>{
+  const isProtected = to.matched.some(item => item.meta.rutaProtegida)
+  if(isProtected && store.state.token === null){
+    next('/Login');
+  } else {
+    next()
+  }
+})
 export default router
