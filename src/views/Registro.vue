@@ -1,14 +1,9 @@
 <template>
     <div class="wrapper fadeInDown">
             <div id="formContent">
-                <!-- Tabs Titles -->
-
-                <!-- Icon -->
                 <div class="fadeIn first">
                     <h1>Registro de Usuario</h1>
                 </div>
-
-                <!-- Login Form -->
                 <form id="frmRegistro" method="post" onsubmit="return agregarUsuarioNuevo()" autocomplete="off">
                     <input type="text" class="fadeIn second form-control" placeholder="Nombre" required="" v-model="usuario">
                     <input type="email" class="fadeIn second form-control" placeholder="Correo" required="" v-model="mail">
@@ -20,7 +15,8 @@
                 </form>
 
                 <div id="formFooter">
-                    <router-link to="/Login">Login</router-link>
+                    <p>¿Ya estás registrado? Inicia sesión</p>
+                    <router-link class="underlineHover a" to="/Login">Login</router-link>
                 </div>
 
         </div>
@@ -77,8 +73,8 @@ export default {
 
 
 
-  a {
-      color: #fff;
+  .a {
+      color: rgb(90, 88, 88);
       /*#92badd;*/
       display: inline-block;
       text-decoration: none;
@@ -343,7 +339,7 @@ export default {
   }
 
   .underlineHover:hover {
-      color: #0d0d0d;
+      color: #39d4e9;
       text-decoration: none;
   }
 
