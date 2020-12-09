@@ -142,7 +142,7 @@ export default {
 
   /* FORM TYPOGRAPHY*/
 
-  button{
+  button {
       background-color: #f78604;
       border: none;
       color: white;
@@ -164,11 +164,11 @@ export default {
       transition: all 0.3s ease-in-out;
   }
 
-  button {
+  button:hover {
       background-color: #f54a16;
   }
 
-  button {
+  button:active {
       -moz-transform: scale(0.95);
       -webkit-transform: scale(0.95);
       -o-transform: scale(0.95);
