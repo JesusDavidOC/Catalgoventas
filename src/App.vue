@@ -3,12 +3,29 @@
     <div id="nav">    
       <router-link to="/">Home</router-link> |
       <router-link to="/Login">Login</router-link> |
+<<<<<<< HEAD
       <router-link to="/Principal">Tienda</router-link> |
       <router-link to="/Carrito">Carrito</router-link>
+=======
+      <router-link to="/Principal">Store</router-link>|
+      <router-link to="/Registro">Register</router-link> 
+>>>>>>> e84c394a6e730c80bbb0f49ee60ef218ea90c639
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import {mapActions} from 'vuex'
+export default {
+  methods:{
+    ...mapActions(['getToken'])
+  }, 
+  created(){
+    this.getToken();
+  }
+}
+</script>
 
 <style>
 #app {

@@ -1,18 +1,37 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Ruta protegida</h1>
+    <button v-on:click="datosProtegidos()">data</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapActions, mapState } from "vuex";
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  components: {},
+  computed: {
+    ...mapState(["token"]),
+  },
+  methods: {
+    async datosProtegidos() {
+      console.log(this.token)
+      var config = {
+        method: "get",
+        url: "http://localhost:8000/usuarios/" + this.token,
+        headers: {},
+        data: "",
+      };
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>

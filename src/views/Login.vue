@@ -1,60 +1,69 @@
 <template>
-    <div class="wrapper fadeInDown">
-            <div id="formContent">
-                <div class="fadeIn first">
-                    <h1>Login</h1>
-                </div>
-                <form id="frmRegistro" method="post" onsubmit="return agregarUsuarioNuevo()" autocomplete="off">
-                  <input placeholder="Nombre de usuario" type="text" v-model="usuario" class="fadeIn second"/>
-                  <input placeholder="Contraseña" type="text" v-model="pass" class="fadeIn third" />
-                  <button class="fadeIn fourth" v-on:click="send()">hola</button> 
-                </form>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <h1>Login</h1>
+      </div>
+      <form
+        id="frmRegistro"
+        method="post"
+        onsubmit="return agregarUsuarioNuevo()"
+        autocomplete="off"
+      >
+        <input
+          placeholder="Nombre de usuario"
+          type="text"
+          v-model="usuario.mail"
+          class="fadeIn second"
+        />
+        <input
+          placeholder="Contraseña"
+          type="text"
+          v-model="usuario.pass"
+          class="fadeIn third"
+        />
+        <button class="fadeIn fourth" v-on:click="send()">hola</button>
+      </form>
 
-                <div id="formFooter">
-                    <p>¿Aún no estás registrado?</p>
-                    <router-link class="underlineHover a" to="/Registro">Registro</router-link>
-                </div>
-
-        </div>
+      <div id="formFooter">
+        <p>¿Aún no estás registrado?</p>
+        <router-link class="underlineHover a" to="/Registro"
+          >Registro</router-link
+        >
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import axios from "axios";
 export default {
   data() {
     return {
-      usuario: "palasque123sea@gmail1.com",
-      pass: "palas",
+      usuario: {
+        mail: "palasque123sea@gmail1.com",
+        pass: "palas",
+      },
     };
   },
   computed: {},
   methods: {
-    send() {
-      var data = JSON.stringify({ mail: this.usuario, pass: this.pass });
-
-      var config = {
-        method: "post",
-        url: "http://localhost:8000/usuarios/login",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: data,
-      };
-
-      axios(config)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    },
+    ...mapActions(["login"]),
   },
 };
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
 
     /* BASIC */
 
@@ -251,61 +260,50 @@ export default {
       }
   }
 
-  @-moz-keyframes fadeIn {
-      from {
-          opacity: 0;
-      }
-      to {
-          opacity: 1;
-      }
-  }
 
-  @keyframes fadeIn {
-      from {
-          opacity: 0;
-      }
-      to {
-          opacity: 1;
-      }
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
-  .fadeIn {
-      opacity: 0;
-      -webkit-animation: fadeIn ease-in 1;
-      -moz-animation: fadeIn ease-in 1;
-      animation: fadeIn ease-in 1;
-      -webkit-animation-fill-mode: forwards;
-      -moz-animation-fill-mode: forwards;
-      animation-fill-mode: forwards;
-      -webkit-animation-duration: 1s;
-      -moz-animation-duration: 1s;
-      animation-duration: 1s;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
-  .fadeIn.first {
-      margin-top: 28px;
-      -webkit-animation-delay: 0.4s;
-      -moz-animation-delay: 0.4s;
-      animation-delay: 0.4s;
-  }
+.fadeIn {
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
 
-  .fadeIn.second {
-      -webkit-animation-delay: 0.6s;
-      -moz-animation-delay: 0.6s;
-      animation-delay: 0.6s;
-  }
+.fadeIn.first {
+  margin-top: 28px;
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
 
-  .fadeIn.third {
-      -webkit-animation-delay: 0.8s;
-      -moz-animation-delay: 0.8s;
-      animation-delay: 0.8s;
-  }
-
-  .fadeIn.fourth {
-      -webkit-animation-delay: 1s;
-      -moz-animation-delay: 1s;
-      animation-delay: 1s;
-  }
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
 
 
   /* Simple CSS3 Fade-in Animation */
@@ -329,6 +327,8 @@ export default {
   .underlineHover:hover:after {
       width: 100%;
   }
+  
+
 
   h1 {
       color: #fff;

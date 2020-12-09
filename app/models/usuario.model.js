@@ -78,6 +78,18 @@ UsuarioSchema.statics.findByCredentials = async (mail, pass) => {
     }    
 }
 
+UsuarioSchema.statics.findByToken = async (token) => {
+    // Search for a user by email and password.       
+    try{
+        const user = await User.find({
+            'token': token
+        })
+        return user;
+    } catch(error){
+        console.log(error)
+    }    
+}
+
 const User = mongoose.model('Usuario', UsuarioSchema);
 
 module.exports = User
