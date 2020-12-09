@@ -70,6 +70,45 @@ const routes = [{
         meta: {
             isProtected: true
         }
+    },
+    {
+        path: '/Perfil',
+        name: 'Perfil',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ('../views/Perfil.vue')
+        },
+        meta: {
+            isProtected: true
+        }
+    },
+    {
+        path: '/Tiendas',
+        name: 'Tiendas',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ('../views/Tiendas.vue')
+        },
+        meta: {
+            isProtected: true
+        }
+    },
+    {
+        path: '/AñadirTienda',
+        name: 'AñadirTienda',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ('../views/AñadirTienda.vue')
+        },
+        meta: {
+            isProtected: true
+        }
     }
 ]
 
@@ -78,7 +117,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const isProtected = to.matched.some(item => item.meta.rutaProtegida)
+    const isProtected = to.matched.some(item => item.meta.isProtected)
     if (isProtected && store.state.token == null) {
         console.log(ey)
         next('/Login');

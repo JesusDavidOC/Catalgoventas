@@ -1,11 +1,11 @@
 <template>
   <div>
+    <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
     <div class="row">
         <div class="col-sm-9">
-            <Hello msg="Hola la vida" />
         </div>
         <div class="col-sm-2">
-            <b-button variant="success">Vende tus productos</b-button>
+            <router-link class="a button" to="/AñadirTienda">Vende tus productos</router-link>
         </div>
     </div>
     <div class="row">
@@ -13,67 +13,9 @@
         <h2 class="fw-300 centrar-texto">Productos</h2>
 
         <div class="contenedor-anuncios">
-          <div class="anuncio">
-            <img src="../../img/1.jpg" alt="Producto 1" />
-            <div class="contenido-anuncio">
-              <h3>Camiseta Vue js</h3>
-              <p>Camiseta tipo algodon...</p>
-              <p class="precio">$20.000</p>
-              <button class="boton boton-amarillo d-block">
-                Añadir al carrito
-              </button>
-            </div>
-          </div>
-
-          <Tarjeta image="../../img/1.jpg" name="Camiseta Vue" description="Camiseta en algodon" price="20.000"></Tarjeta>
-
-          <div class="anuncio">
-            <img src="../../img/3.jpg" alt="Producto 3" />
-            <div class="contenido-anuncio">
-              <h3>Camiseta React</h3>
-              <p>Camiseta tipo algodon...</p>
-              <p class="precio">$20.000</p>
-              <button class="boton boton-amarillo d-block">
-                Añadir al carrito
-              </button>
-            </div>
-          </div>
-
-          <div class="anuncio">
-            <img src="../../img/1.jpg" alt="Producto 1" />
-            <div class="contenido-anuncio">
-              <h3>Camiseta Vue js</h3>
-              <p>Camiseta tipo algodon...</p>
-              <p class="precio">$20.000</p>
-              <button class="boton boton-amarillo d-block">
-                Añadir al carrito
-              </button>
-            </div>
-          </div>
-
-          <div class="anuncio">
-            <img src="../../img/2.jpg" alt="Producto 2" />
-            <div class="contenido-anuncio">
-              <h3>Camiseta Angular</h3>
-              <p>Camiseta tipo algodon...</p>
-              <p class="precio">$20.000</p>
-              <button class="boton boton-amarillo d-block">
-                Añadir al carrito
-              </button>
-            </div>
-          </div>
-
-          <div class="anuncio">
-            <img src="../../img/3.jpg" alt="Producto 3" />
-            <div class="contenido-anuncio">
-              <h3>Camiseta React</h3>
-              <p>Camiseta tipo algodon...</p>
-              <p class="precio">$20.000</p>
-              <router-link class="button" to="/Carrito"
-                >Añadir al carrito</router-link
-              >
-            </div>
-          </div>
+            <Tarjeta image="../../img/1.jpg" name="Camiseta Vue" description="Camiseta en algodon" price=20.000></Tarjeta>
+            <Tarjeta image="../../img/2.jpg" name="Camiseta Angular" description="Camiseta en algodon" price=20.000></Tarjeta>
+            <Tarjeta image="../../img/3.jpg" name="Camiseta React" description="Camiseta en algodon" price=20.000></Tarjeta>
         </div>
       </div>
     </div>
@@ -82,9 +24,11 @@
 
 <script>
 import Tarjeta from '../components/TarjetaProducto' 
+import Header from '../components/Header' 
 export default {
     components: {
-        Tarjeta
+        Tarjeta,
+        Header
     }
 };
 </script>

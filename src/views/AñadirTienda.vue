@@ -7,30 +7,30 @@
             <form action="">
                 <fieldset>
 
-                    <legend>Información del producto</legend>
+                    <legend>Información de la tienda</legend>
 
-                    <label for="name">Imágen:</label>
-                    <div class="forma-contacto">
-                        <div class="image"><input type="text" id="name" required></div>
-                        <button class="btn-seleccionar">Seleccionar</button>
-                    </div>
                     <label for="name">Nombre:</label>
                     <input type="text" id="name" required>
 
-                    <label for="desciption">Descripción:</label>
-                    <input type="text" id="name" required>
+                    <label for="desciption">Categoría:</label>
+                    <select id="opciones">
+                        <option value="" disabled selected>-- Seccione --</option>
+                        <option value="compra">Moda</option>
+                        <option value="vende">Tecnología</option>
+                        <option value="vende">Viveres</option>
+                        <option value="vende">Hogar</option>
+                        <option value="vende">Licores</option>
+                        <option value="vende">Otro</option>
+                    </select>
 
-                    <label for="price">Precio:</label>
-                    <input type="Number" id="price" required>
-
-                    <label for="amount">Cantidad disponible:</label>
-                    <input type="Number" id="amount" required>
+                    <label for="country">Ciudad:</label>
+                    <input type="text" id="country" required>
 
                 </fieldset>
             </form>
             <div class="">
                 <router-link class="a button" to="/Principal">Atrás</router-link>
-                <button class="btn btn-comprar">Añadir</button>
+                <button>Registrar tienda</button>
             </div>
         </div>
     </div>
@@ -103,11 +103,10 @@ export default {
     .contenido-centrado {
         max-width: 800px;
     }
-
+    
     form {
         margin-bottom: 20px;
     }
-    
 
     form p {
         font-size: 1.5rem;
