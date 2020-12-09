@@ -78,9 +78,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const isProtected = to.matched.some(item => item.meta.rutaProtegida)
-    if (isProtected && store.state.token == null) {
-        console.log(ey)
+    const isProtected = to.matched.some(item => item.meta.isProtected)
+    if (isProtected && store.state.token === 'null') {        
         next('/Login');
     } else {
         next()

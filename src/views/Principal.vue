@@ -1,13 +1,5 @@
 <template>
-  <div>
-    <div class="row">
-        <div class="col-sm-9">
-            <Hello msg="Hola la vida" />
-        </div>
-        <div class="col-sm-2">
-            <b-button variant="success">Vende tus productos</b-button>
-        </div>
-    </div>
+  <b-container>    
     <div class="row">
       <div class="seccion contenedor">
         <h2 class="fw-300 centrar-texto">Productos</h2>
@@ -77,14 +69,18 @@
         </div>
       </div>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
 import Tarjeta from '../components/TarjetaProducto' 
+import {mapState} from 'vuex'
+
 export default {
     components: {
         Tarjeta
+    }, computed:{
+        ...mapState(['tieneTienda'])
     }
 };
 </script>

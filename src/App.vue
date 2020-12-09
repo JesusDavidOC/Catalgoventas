@@ -13,13 +13,17 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 export default {
   methods:{
-    ...mapActions(['getToken'])
+    ...mapActions(['getToken', 'tieneTienda'])
   }, 
+  computed:{
+    ...mapState(['token'])
+  },
   created(){
     this.getToken();
+    this.tieneTienda(this.token);
   }
 }
 </script>

@@ -1,16 +1,35 @@
 const Tienda = require('../models/tienda.model.js');
-const Usuario = require('../models/usuario.model.js')
+const User = require('../models/usuario.model.js');
 // Create and save a new Product
-exports.create = (req, res) => {
-    console.log("Creating a product ... soon!");
+exports.create = async (req, res) => {
+    // Validate if the request's body is empty
+    // (does not include required data)    
+    if (Object.keys(req.body).length === 0) {
+        return res.status(400).send({
+            message: "Store data can not be empty"
+        });
+    }
+    try {
+        const tienda = (req.body)       
+        const token = req.params.token               
+        var status = await Tienda.guardar(tienda, token)               
+        res.status(201).send({ status })
+    } catch (error) {
+        res.status(400).send(error)
+    }
 };
 // Retrieve and list all Products
 exports.findAll = (req, res) => {
     console.log("Listing all products ... soon!");
 };
 // Get a single Product by its id
-exports.findOne = (req, res) => {
-    console.log("Getting a particular product ... soon!");
+exports.findOne = async (req, res) => {    
+    try {
+        const tienda = await Tienda.findByAdmin(req.params.token)
+        res.status(200).send(tienda)
+    } catch (error) {
+        res.status(400).send(error)
+    }
 };
 // Update a Product by its id
 exports.update = (req, res) => {
