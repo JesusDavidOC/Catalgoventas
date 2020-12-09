@@ -1,28 +1,29 @@
 <template>
     <div>
         <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+        <div class="row">
+        <div class="col-sm-9">
+        </div>
+        <div class="col-sm-2">
+            <router-link class="a button" to="/AñadirTienda">Vende tus productos</router-link>
+        </div>
+    </div>
         <div class="row contenedor">            
             <div class="col-sm-12 seccion">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped table-dark" id="dataTableTG">
                         <thead class="contenedor-Thead">
                             <tr>
-                                <th>Producto</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Añadir</th>
-                                <th>Quitar</th>
-                                <th></th>
+                                <th>Categoría</th>
+                                <th>Propietario</th>
+                                <th>Ciudad</th>
                             </tr>
                         </thead>
                         <tbody class=" ">
-                            <Pcarrito image="../../img/3.jpg" name="Camiseta Vue" description="Camiseta en algodon" price=20.000 cant=2 />
-                            <Pcarrito image="../../img/7.jpg" name="Camiseta Vue" description="Camiseta en algodon" price=20.000 cant=2 />
+                            <Tlist name="Camisetas Store" category="Moda" admin="Natalia" country="Manizales" />
                         </tbody>
                     </table>
-                    <button class="btn btn-comprar">Comprar</button>
                 </div>
             </div>
         </div>
@@ -30,11 +31,11 @@
 </template>
 
 <script>
-import Pcarrito from '../components/CarritoList' 
+import Tlist from '../components/TiendasList' 
 import Header from '../components/Header'
 export default {
     components: {
-        Pcarrito,
+        Tlist,
         Header
     }
 };
@@ -88,7 +89,7 @@ export default {
         max-width: 800px;
     }
 
-    button {
+    button, .button {
       background-color: #f78604;
       border: none;
       color: white;
@@ -110,11 +111,11 @@ export default {
       transition: all 0.3s ease-in-out;
     }
 
-    button:hover {
+    button:hover, .button:hover {
         background-color: #f54a16;
     }
 
-    button:active {
+    button:active, .button:active {
         -moz-transform: scale(0.95);
         -webkit-transform: scale(0.95);
         -o-transform: scale(0.95);
@@ -144,6 +145,7 @@ export default {
     }
 
     table {
+        width: 100%;
         border-collapse: collapse;
         -webkit-box-shadow: 17px 21px 5px -4px rgba(5, 5, 5, 0.616);
         -moz-box-shadow: 17px 21px 5px -4px rgba(5, 5, 5, 0.616);
