@@ -1,4 +1,5 @@
 const Tienda = require('../models/tienda.model.js');
+const Usuario = require('../models/usuario.model.js')
 // Create and save a new Product
 exports.create = (req, res) => {
     console.log("Creating a product ... soon!");
