@@ -6,23 +6,21 @@
       </div>
       <form
         id="frmRegistro"
-        method="post"
-        onsubmit="return agregarUsuarioNuevo()"
         autocomplete="off"
       >
         <input
           placeholder="Nombre de usuario"
           type="text"
-          v-model="usuario.mail"
+          v-model="$data.usuario.mail"
           class="fadeIn second"
         />
         <input
           placeholder="Contraseña"
           type="text"
-          v-model="usuario.pass"
+          v-model="$data.usuario.pass"
           class="fadeIn third"
         />
-        <button class="fadeIn fourth" v-on:click="send()">hola</button>
+        <button class="fadeIn fourth" v-on:click.prevent="login(usuario)" type="button">hola</button>
       </form>
 
       <div id="formFooter">
