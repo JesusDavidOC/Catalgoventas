@@ -4,29 +4,55 @@ import Home from '../views/Home.vue'
 import store from '../store'
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    meta:{
-      rutaProtegida: true
+const routes = [{
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/Login',
+        name: 'Login',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../views/Login.vue')
+        }
+    },
+    {
+        path: '/registro',
+        name: 'Registro',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../views/Registro.vue')
+        }
+    },
+    {
+        path: '/Principal',
+        name: 'Principal',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../views/Principal.vue')
+        }
+    },
+    {
+        path: '/Carrito',
+        name: 'Carrito',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../views/Carrito.vue')
+        }
     }
-  },
-  {
-    path: '/Login',
-    name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/Login.vue')
-    }
-  }
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 router.beforeEach((to, from, next)=>{
