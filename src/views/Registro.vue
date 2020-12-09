@@ -42,8 +42,22 @@ export default {
 
     validar() {
         if(this.usuario.name==""){
-            console.log("Nombre vacío")
-        }        
+            alert("El campo nombre no debe estar vacío");
+        }
+        if(this.usuario.mail==""){
+            alert("El campo correo no debe estar vacío");
+        }
+        if(this.usuario.pass==""){
+            alert("El campo contraseña no debe estar vacío");
+        }
+        if(this.usuario.country==""){
+            alert("El campo ciudad no debe estar vacío");
+        }
+        if(this.usuario.phone==""){
+            alert("El campo teléfono no debe estar vacío");
+        }else if(this.usuario.phone!=Number){
+            alert("En el campo Teléfono debe ingresar un valor numérico");
+        }
     },
     
     send() {

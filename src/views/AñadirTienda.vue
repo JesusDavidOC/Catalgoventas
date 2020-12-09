@@ -2,7 +2,6 @@
     <div>
         <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
         <div class="contenedor seccion contenido-centrado">
-            <h2 class="fw-300 centrar-texto">Llena el Formulario</h2>
 
             <form action="">
                 <fieldset>
@@ -10,10 +9,10 @@
                     <legend>Información de la tienda</legend>
 
                     <label for="name">Nombre:</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" required="" v-model="tienda.name">
 
                     <label for="desciption">Categoría:</label>
-                    <select id="opciones">
+                    <select id="opciones" required="" v-model="tienda.category">
                         <option value="" disabled selected>-- Seccione --</option>
                         <option value="compra">Moda</option>
                         <option value="vende">Tecnología</option>
@@ -24,13 +23,13 @@
                     </select>
 
                     <label for="country">Ciudad:</label>
-                    <input type="text" id="country" required>
+                    <input type="text" id="country" required="" v-model="tienda.country">
 
                 </fieldset>
             </form>
             <div class="">
                 <router-link class="a button" to="/Principal">Atrás</router-link>
-                <button>Registrar tienda</button>
+                <button v-on:click="validar()>Registrar tienda</button>
             </div>
         </div>
     </div>
@@ -41,7 +40,32 @@ import Header from '../components/Header'
 export default {
     components: {
         Header
-    }
+    },
+    data() {
+        return {
+            tienda:{
+                name: "",
+                category: "",
+                country: ""
+            }
+        };
+    },
+    computed: {},
+    methods: {
+
+    validar() {
+       
+        if(this.usuario.name==""){
+            alert("El campo Nombre no debe estar vacío");
+        }
+        if(this.usuario.category==""){
+            alert("Debe seleccionar una imágen");
+        }
+        if(this.usuario.country==""){
+            alert("El campo Descripción no debe estar vacío");
+        }
+    },
+  },
 };
 </script>
 
