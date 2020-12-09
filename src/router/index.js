@@ -8,8 +8,8 @@ const routes = [{
         path: '/',
         name: 'Home',
         component: Home,
-        meta:{
-          isProtected: true
+        meta: {
+            isProtected: true
         }
     },
     {
@@ -30,7 +30,7 @@ const routes = [{
         // which is lazy-loaded when the route is visited.
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Registro.vue')
-        },        
+        },
     },
     {
         path: '/Principal',
@@ -41,11 +41,11 @@ const routes = [{
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Principal.vue')
         },
-        meta:{
-          isProtected: true
+        meta: {
+            isProtected: true
         }
     },
-    /*{
+    {
         path: '/Carrito',
         name: 'Carrito',
         // route level code-splitting
@@ -54,22 +54,22 @@ const routes = [{
         component: function() {
             return import ('../views/Carrito.vue')
         },
-        meta:{
-          isProtected: true
+        meta: {
+            isProtected: true
         }
-    }*/
+    }
 ]
 
 const router = new VueRouter({
     routes
 })
 
-router.beforeEach((to, from, next)=>{
-  const isProtected = to.matched.some(item => item.meta.rutaProtegida)
-  if(isProtected && store.state.token === null){
-    next('/Login');
-  } else {
-    next()
-  }
+router.beforeEach((to, from, next) => {
+    const isProtected = to.matched.some(item => item.meta.rutaProtegida)
+    if (isProtected && store.state.token === null) {
+        next('/Login');
+    } else {
+        next()
+    }
 })
 export default router
