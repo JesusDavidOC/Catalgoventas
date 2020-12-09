@@ -64,9 +64,10 @@ UsuarioSchema.methods.generateAuthToken = async function () {
 }
 
 UsuarioSchema.statics.findByCredentials = async (mail, pass) => {
-    // Search for a user by email and password.       
+    // Search for a user by email and password.        
     try{
-        const user = await User.findOne({ mail })
+        const user = await User.findOne({ 'mail': mail })
+        console.log(user)
         if (!user) {
             throw new Error({ error: 'Invalid login credentials' })
         }

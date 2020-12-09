@@ -15,12 +15,12 @@
                     <label for="desciption">Categoría:</label>
                     <select id="opciones">
                         <option value="" disabled selected>-- Seccione --</option>
-                        <option value="compra">Moda</option>
-                        <option value="vende">Tecnología</option>
-                        <option value="vende">Viveres</option>
-                        <option value="vende">Hogar</option>
-                        <option value="vende">Licores</option>
-                        <option value="vende">Otro</option>
+                        <option value="Moda">Moda</option>
+                        <option value="Tecnologia">Tecnología</option>
+                        <option value="Viveres">Viveres</option>
+                        <option value="Hogar">Hogar</option>
+                        <option value="Licores">Licores</option>
+                        <option value="Otros">Otro</option>
                     </select>
 
                     <label for="country">Ciudad:</label>

@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 exports.create = async (req, res) => {
     // Validate if the request's body is empty
     // (does not include required data)
-    console.log(req.body);
     if (Object.keys(req.body).length === 0) {
         return res.status(400).send({
             message: "User data can not be empty"

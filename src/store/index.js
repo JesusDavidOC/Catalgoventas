@@ -21,7 +21,7 @@ export default new Vuex.Store({
   actions: {
     async login({ commit }, usuario) {
       var data = JSON.stringify({ mail: usuario.mail, pass: usuario.pass });
-
+      console.log(usuario);
       var config = {
         method: "post",
         url: "http://localhost:8000/usuarios/login",
