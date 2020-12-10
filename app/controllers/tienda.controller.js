@@ -11,8 +11,9 @@ exports.create = async (req, res) => {
     }
     try {
         const tienda = (req.body)       
-        const token = req.params.token               
-        var status = await Tienda.guardar(tienda, token)               
+        const token = req.params.token                       
+        var status = await Tienda.guardar(tienda, token) 
+        console.log(status)              
         res.status(201).send({ status })
     } catch (error) {
         res.status(400).send(error)
