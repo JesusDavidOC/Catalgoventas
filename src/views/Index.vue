@@ -1,51 +1,82 @@
 <template>
     <div>
         <div>
-            
+            <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
         </div>
 
         <div>
-            <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+            <div class="contador parallax">
+                <div class="contenedor">
+                    <ul class="resumen-evento clearfix">
+                        <li>
+                            <img src="../../img/etiqueta.svg" alt="" class="icono">
+                            <p>Excelentes precios</p>
+                        </li>
+                        <li>
+                            <img src="../../img/compras.svg" alt="" class="icono">
+                            <p>Compras seguras</p>
+                        </li>
+                        <li>
+                            <img src="../../img/camion-de-reparto (1).svg" alt="" class="icono">
+                            <p>Envíos rápidos</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Contenedor contador-->
+            </div>
+            <!--Contador-->
         </div>
 
         <section class="invitados contenedor-categorias">
             <h2>Categorías</h2>
             <ul class="lista-invitados clearfix">
                 <li>
-                    <div class="invitado">
-                        <img src="../../img/moda.jpg" alt="Imagen Invitado 1">
-                        <p>Moda</p>
-                    </div>
+                    <a> 
+                        <div class="invitado">
+                            <img src="../../img/moda.jpg" alt="Imagen Moda">
+                            <p>Moda</p>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <div class="invitado">
-                        <img src="../../img/tecnologia.jpg" alt="Imagen Invitado 1">
-                        <p>Tecnología</p>
-                    </div>
+                    <a>
+                        <div class="invitado">
+                            <img src="../../img/tecnologia.jpg" alt="Imagen Tecnología">
+                            <p>Tecnología</p>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <div class="invitado">
-                        <img src="../../img/viveres.jpg" alt="Imagen Invitado 1">
-                        <p>Viveres</p>
-                    </div>
+                    <a>
+                        <div class="invitado">
+                            <img src="../../img/viveres.jpg" alt="Imagen Viveres">
+                            <p>Viveres</p>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <div class="invitado">
-                        <img src="../../img/hogar.jpg" alt="Imagen Invitado 1">
-                        <p>Hogar</p>
-                    </div>
+                    <a>
+                        <div class="invitado">
+                            <img src="../../img/hogar.jpg" alt="Imagen Hogar">
+                            <p>Hogar</p>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <div class="invitado">
-                        <img src="../../img/licores.jpg" alt="Imagen Invitado 1">
-                        <p>Licores</p>
-                    </div>
+                    <a>
+                        <div class="invitado">
+                            <img src="../../img/licores.jpg" alt="Imagen Hogar">
+                            <p>Licores</p>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <div class="invitado">
-                        <img src="../../img/otros.jpg" alt="Imagen Invitado 1">
-                        <p>Otro</p>
-                    </div>
+                    <a>
+                        <div class="invitado">
+                            <img src="../../img/otros.jpg" alt="Imagen Otros">
+                            <p>Otros</p>
+                        </div>
+                    </a>
                 </li>
             </ul>
         </section>
@@ -53,11 +84,18 @@
 </template>
 
 <script>
+import Tlist from '../components/TiendasList'
 import Header from '../components/Header'
 export default {
     components: {
-        Header
-    }
+        Header,
+        Tlist
+    }, 
+    computed: {},
+    methods: {
+        
+    },
+
 };
 
 </script>
@@ -72,6 +110,10 @@ export default {
     *:before,
     *:after {
         box-sizing: inherit;
+    }
+
+    a:hover {
+        cursor: pointer;
     }
     
     h2 {
@@ -261,6 +303,64 @@ export default {
     
     .clearfix::after {
         clear: both;
+    }
+
+    .parallax::before {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        -webkit-filter: brightness(.8);
+        filter: brightness(.8);
+    }
+    
+    .contador {
+        position: relative;
+        height: auto;
+    }
+    
+    .contador::before {
+        background-image: url("../../img/fondo.jpg");
+        content: '';
+    }
+    
+    .resumen-evento {
+        position: relative;
+        padding: 120px 0;
+    }
+    
+    .resumen-evento li {
+        width: 50%;
+        float: left;
+        text-align: center;
+        color: #fe4918;
+        text-transform: uppercase;
+        font-family: var(--o);
+        font-size: 24px;
+    }
+    
+    @media only screen and (min-width: 768px) {
+        .resumen-evento li {
+            width: 33.3%;
+        }
+    }
+
+    .icono {
+        width: 50px;
+    }
+    
+    
+    .numero {
+        font-family: var(--o);
+        color: var(--naranja);
+        font-size: 4rem;
+        display: block;
+        margin: 0 0 10px 0;
     }
 
 </style>
