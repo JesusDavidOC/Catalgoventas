@@ -1,5 +1,5 @@
 <template>
-    <div class="anuncio card">
+    <div>
            <img src="../../img/icono_4.png" alt="">
             <div class="contenido-anuncio">
               <h3>{{tienda.name}}</h3>

@@ -62,7 +62,7 @@
           </a>
         </li>
         <li>
-          <a>
+          <a v-on:click="getTipoTiendas('Tecnologia')">
             <div class="invitado">
               <img src="../../img/tecnologia.jpg" alt="Imagen Tecnología" />
               <p>Tecnología</p>
@@ -70,7 +70,7 @@
           </a>
         </li>
         <li>
-          <a>
+          <a v-on:click="getTipoTiendas('Viveres')">
             <div class="invitado">
               <img src="../../img/viveres.jpg" alt="Imagen Viveres" />
               <p>Viveres</p>
@@ -78,7 +78,7 @@
           </a>
         </li>
         <li>
-          <a>
+          <a v-on:click="getTipoTiendas('Hogar')">
             <div class="invitado">
               <img src="../../img/hogar.jpg" alt="Imagen Hogar" />
               <p>Hogar</p>
@@ -86,7 +86,7 @@
           </a>
         </li>
         <li>
-          <a>
+          <a v-on:click="getTipoTiendas('Licores')">
             <div class="invitado">
               <img src="../../img/licores.jpg" alt="Imagen Hogar" />
               <p>Licores</p>
@@ -94,7 +94,7 @@
           </a>
         </li>
         <li>
-          <a>
+          <a v-on:click="getTipoTiendas('Otros')">
             <div class="invitado">
               <img src="../../img/otros.jpg" alt="Imagen Otros" />
               <p>Otros</p>
@@ -105,7 +105,7 @@
     </section>
     <section>
       <div class="contenedor-anuncios row">
-        <div class="col-sm-4" v-for="item in temp" >
+        <div class="col-sm-4 anuncio card" v-for="item in temp" >
             <TTienda :tienda="item" style="width:30%"/>
         </div>        
       </div>
@@ -444,4 +444,60 @@ ul {
   display: block;
   margin: 0 0 10px 0;
 }
+
+.anuncio {
+    /* flex-grow felx-shrink flex-basis (orden)*/
+    /* flex-shrink: 0;  Define si el contenido se debe hacer mas pequeño de ser posible, el default es 1 (si), se debe definir en 0 para que diga que no */
+    /* flex-basis: calc(33.3% - 1rem); */
+    background-color: #f5f5f5;
+    border: 1px solid #b5b5b5;
+    /* whidth style color */
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .anuncio {
+        flex: 0 0 calc(33.3% - 1rem);
+    }
+}
+
+.contenido-anuncio {
+  padding: 2rem 2rem;
+}
+
+.contenido-anuncio h3 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.contenido-anuncio p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.card {
+  border: 1px solid #e1e1e1;
+  background-color: white;
+  padding: 10px 0;
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  border: 1px solid var(--naranja);
+  box-shadow: 0px 0px 50px #666;
+}
+
+
+@media (min-width: 768px) {
+  .contenedor-anuncios {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+  }
+}
+
 </style>
