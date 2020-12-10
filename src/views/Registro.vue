@@ -89,7 +89,7 @@ export default {
         }
         else if(this.usuario.phone==""){
             alert("El campo teléfono no debe estar vacío");
-        }else if(this.usuario.phone!=Number){
+        }else if(isNaN(this.usuario.phone)){
             alert("En el campo Teléfono debe ingresar un valor numérico");
         } else {
             this.send()
