@@ -2,8 +2,9 @@
 		<tr>
 			<td>{{name}}</td>
 			<td>{{mail}}</td>
-			<td>{{country}}</td>
-			<td>{{phone}}</td>
+            <td>{{pass}}</td>
+            <td>{{country}}</td>
+            <td>{{phone}}</td>
 		</tr>
 </template>
 
@@ -12,10 +13,11 @@ export default {
 	name: 'd-user',
 	props: {
 		name: String,
-		mail: String,
+        mail: String,
+        pass: String,
 		country: String,
 		phone: Number
-	}
+    }
 }
 </script>
 

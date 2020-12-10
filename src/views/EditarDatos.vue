@@ -1,6 +1,23 @@
 <template>
   <div>
-    <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+    <div v-if="tieneTienda">
+      <Header
+          link4="Inicio"
+          link1="Tiendas"
+          link2="Perfil"
+          link3="Cerrar sesión"
+          link6="Administra tu tienda"
+      ></Header>
+      </div>
+      <div v-if="!tieneTienda">
+      <Header
+          link4="Inicio"
+          link1="Tiendas"
+          link2="Perfil"
+          link3="Cerrar sesión"
+          link5="Vende tus productos"
+      ></Header>
+  </div>
     <div class="contenedor seccion contenido-centrado">
       <form action="">
         <fieldset>
@@ -11,6 +28,7 @@
                 type="text" 
                 id="name" 
                 required=""
+                :value="usuario.name"
             />
 
             <label for="mail">Mail:</label>
@@ -18,6 +36,7 @@
                 type="email" 
                 id="mail" 
                 required=""
+                :value="usuario.mail"
             />
 
             <label for="pass">Contraseña:</label>
@@ -25,6 +44,7 @@
                 type="password" 
                 id="pass" 
                 required=""
+                :value="usuario.pass"
             />
 
             <label for="country">Ciudad:</label>
@@ -32,11 +52,12 @@
                 type="text"
                 id="country"
                 required=""
+                :value="usuario.country"
             />
         </fieldset>
       </form>
       <div class="">
-        <router-link class="a button" to="/Principal">Atrás</router-link>
+        <router-link class="a button" to="/Perfil">Atrás</router-link>
         <button v-on:click="validar()">Guardar</button>
       </div>
     </div>
@@ -46,6 +67,7 @@
 <script>
 import router from "../router";
 import Header from "../components/Header";
+import { mapState } from "vuex";
 export default {
   components: {
     Header,
@@ -61,7 +83,9 @@ export default {
       },
     };
   },
-  computed: {},
+  computed: {
+    ...mapState(["tieneTienda"]),
+  },
   methods: {
     validar() {
       if (this.usuario.name == "") {

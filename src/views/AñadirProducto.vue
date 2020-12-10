@@ -1,6 +1,23 @@
 <template>
   <div>
-    <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+    <div v-if="tieneTienda">
+        <Header
+            link4="Inicio"
+            link1="Tiendas"
+            link2="Perfil"
+            link3="Cerrar sesión"
+            link6="Administra tu tienda"
+        ></Header>
+        </div>
+        <div v-if="!tieneTienda">
+        <Header
+            link4="Inicio"
+            link1="Tiendas"
+            link2="Perfil"
+            link3="Cerrar sesión"
+            link5="Vende tus productos"
+        ></Header>
+    </div>
     <div>   
         <div class="row contenedor">    
             <div class="col-sm-12 seccion">
@@ -117,7 +134,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["token"]),
+    ...mapState(["token", "tieneTienda"]),
   },
   methods: {
     async validar() {

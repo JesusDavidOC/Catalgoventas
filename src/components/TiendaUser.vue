@@ -3,6 +3,7 @@
 			<td>{{name}}</td>
 			<td>{{category}}</td>
 			<td>{{country}}</td>
+            <td>{{admin}}</td>
 		</tr>
 </template>
 
@@ -11,8 +12,9 @@ export default {
 	name: 't-user',
 	props: {
 		name: String,
-        category: String,
-		country: String,
+		category: String,
+		admin: String,
+		country: String
 	}
 }
 </script>

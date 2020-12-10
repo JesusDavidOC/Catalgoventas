@@ -1,6 +1,23 @@
 <template>
   <div>
-    <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+    <div v-if="tieneTienda">
+        <Header
+            link4="Inicio"
+            link1="Tiendas"
+            link2="Perfil"
+            link3="Cerrar sesión"
+            link6="Administra tu tienda"
+        ></Header>
+        </div>
+        <div v-if="!tieneTienda">
+        <Header
+            link4="Inicio"
+            link1="Tiendas"
+            link2="Perfil"
+            link3="Cerrar sesión"
+            link5="Vende tus productos"
+        ></Header>
+    </div>
     <div class="row">
         <div class="col-sm-9">
         </div>
@@ -24,12 +41,16 @@
 
 <script>
 import PUser from '../components/PUser' 
-import Header from '../components/Header' 
+import Header from '../components/Header'
+import { mapState } from "vuex"; 
 export default {
     components: {
         PUser,
         Header
-    }
+    },
+    computed: {
+      ...mapState(["token", "tieneTienda"]),
+    },
 };
 </script>
 
