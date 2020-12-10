@@ -1,7 +1,30 @@
 <template>
   <div>
     <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
-
+    <div>
+        <div class="row contenedor">            
+            <div class="col-sm-12 seccion">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-dark" id="dataTableTG">
+                        <thead class="contenedor-Thead">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody class=" ">
+                            <Plist image="../../img/3.jpg" name="Camiseta vue" description="Camiseta en algodon" :price=20000 :cant=2 />
+                            <Plist image="../../img/7.jpg" name="Camiseta Vue" description="Camiseta en algodon" :price=20000 :cant=2 />
+                        </tbody>
+                    </table>
+                    <button class="btn btn-comprar">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <b-container>
       <b-row>
         <b-col :sm="12">
@@ -69,10 +92,12 @@
 <script>
 import axios from "axios";
 import Header from "../components/Header";
+import Plist from '../components/ProductosList'
 import { mapState } from "vuex";
 export default {
   components: {
     Header,
+    Plist
   },
   data() {
     return {
@@ -368,7 +393,7 @@ fieldset {
 }
 
 table {
-  width: 100%;
+  width: 50%;
 }
 
 .contenedor-tienda {
