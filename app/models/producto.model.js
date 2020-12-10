@@ -23,10 +23,10 @@ const ProductoSchema = mongoose.Schema({
     timestamps: true
 });
 
-ProductoSchema.statics.buscarProducto = async(nombreTienda, nombreProducto) => {
-    // Search for a user by email and password.       
+ProductoSchema.statics.buscarProducto = async(productName, storeName) => {
+    // Search for a user by email and password.      
     try {
-        const producto = tienda.buscarProducto(nombreTienda, nombreProducto)
+        const producto = await tienda.buscarProducto( productName, storeName)             
         return producto
     } catch (error) {
         console.log(error)

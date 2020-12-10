@@ -30,10 +30,10 @@ exports.findAll = (req, res) => {
     console.log("Listing all products ... soon!");
 };
 // Get a single Product by its id
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
     try {
-        const producto = Product.buscarProducto(req.params.nombreTienda, req.params.nombreProducto)
-        console.log(producto)
+        const producto = await Product.buscarProducto(req.params.nombreTienda, req.params.nombreProducto)        
+        res.status(200).send(producto)
     } catch (err) {
         res.status(400).send({
             message: err.message || "Not found."

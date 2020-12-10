@@ -19,8 +19,21 @@ export default new Vuex.Store({
             state.tieneTienda = playload
         },
         anadirItemCarrito(state, playload) {
-            state.carrito.push(playload)
-            console.log(playload);
+            var bandera = -1;
+            for (let index = 0; index < state.carrito.length; index++) {
+                const element = state.carrito[index];
+                if (playload.name == element.name && playload.tienda == element.tienda) {
+                    bandera = index
+                    break;
+                }
+            }
+            if (bandera == -1) {
+                state.carrito.push({ name: playload.name, tienda: playload.tienda, cantidad: 1 })
+            } else {
+                state.carrito[bandera].cantidad = state.carrito[bandera].cantidad + 1 
+            }
+
+
         }
     },
     actions: {
@@ -37,10 +50,10 @@ export default new Vuex.Store({
             };
 
             axios(config)
-                .then(function(response) {
+                .then(function (response) {
                     commit('setToken', response.data.token);
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log(error);
                 });
         },
@@ -64,14 +77,14 @@ export default new Vuex.Store({
             };
 
             axios(config)
-                .then(function(response) {
+                .then(function (response) {
                     if (response.data != '') {
                         commit('setTieneTienda', true)
                     } else {
                         commit('setTieneTienda', false)
                     }
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log(error);
                 });
         },
@@ -88,10 +101,10 @@ export default new Vuex.Store({
             };
 
             axios(config)
-                .then(function(response) {
+                .then(function (response) {
                     return response;
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log(error);
                 });
         },
@@ -117,7 +130,6 @@ export default new Vuex.Store({
         },
         anadirCarrito({ commit }, producto) {
             commit('anadirItemCarrito', producto)
-            console.log(producto);
         }
     },
 

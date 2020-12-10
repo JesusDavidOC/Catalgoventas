@@ -28,7 +28,6 @@ exports.findOne = (req, res) => {
         mail: req.body.mail
     })
     try {
-        console.log(user)
         res.status(200).send(user)
     } catch (error) {
         res.status(400).send(error)
@@ -49,8 +48,7 @@ exports.login = async(req, res) => {
 
     try {
         const { mail, pass } = req.body
-        const user = await usuario.findByCredentials(mail, pass)
-        console.log(user)
+        const user = await usuario.findByCredentials(mail, pass)        
         if (!user) {
             return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
         }

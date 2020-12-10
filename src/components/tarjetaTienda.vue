@@ -1,19 +1,22 @@
 <template>
 <div>
   <section>
-        <div class="anuncio card">
-            <img src="../../img/icono_4.png" alt="" />
-            <div class="contenido-anuncio">
-                <h3>{{ tienda.name }}</h3>
-                <p>{{ tienda.category.name }}</p>
-                <p>{{ tienda.country }}</p>
-                <p>{{ tienda.admin.mail }}</p>
-                <button
-                class="boton boton-amarillo d-block"
-                v-on:click="changeStatus()"
-                >
-                Ver productos
-                </button>
+    <div class="anuncio card">
+      <img src="../../img/icono_4.png" alt="" />
+      <div class="contenido-anuncio">
+        <h3>{{ tienda.name }}</h3>
+        <p>{{ tienda.category.name }}</p>
+        <p>{{ tienda.country }}</p>
+        <p>{{ tienda.admin.mail }}</p>
+        <button
+          class="boton boton-amarillo d-block"
+          v-on:click="changeStatus()"
+        >
+          Ver productos
+        </button>
+        <section v-if="status">
+            <div v-for="item in tienda.productos">            
+            <tproducto image="img" :name="item.name" :description="item.description" :price="item.price" :tienda="tienda.name   "/>
             </div>
         </div>
     </section>
