@@ -1,6 +1,30 @@
 <template>
     <div>
         <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+        <div>        
+            <div class="contenedor-tienda">
+                <fieldset>  
+                    <legend>Datos de la tienda</legend>  
+                    <div class="col-sm-12 seccion">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped table-dark" id="dataTableTG">
+                                <thead class="contenedor-Thead">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Categoría</th>
+                                        <th>Ciudad</th>
+                                    </tr>
+                                </thead>
+                                <tbody class=" ">
+                                    <TiendaUser name="Camisetas store" category="Moda" country="Manizales"/>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <router-link to="/ProductosUser" class="button">Ver Productos</router-link>
+                </fieldset>        
+            </div>
+        </div>
         <div class="contenedor seccion contenido-centrado">
 
             <form action="">
@@ -25,22 +49,25 @@
                     <label for="amount">Cantidad disponible:</label>
                     <input type="Number" id="amount" required="" v-model="producto.amount">
 
+                    <div class="">
+                        <router-link class="a button" to="/Principal">Atrás</router-link>
+                        <button class="btn btn-comprar" v-on:click="validar()">Añadir</button>
+                    </div>
+
                 </fieldset>
             </form>
-            <div class="">
-                <router-link class="a button" to="/Principal">Atrás</router-link>
-                <button class="btn btn-comprar" v-on:click="validar()">Añadir</button>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import TiendaUser from '../components/TiendaUser'
 import Header from '../components/Header'
 export default {
     components: {
-        Header
+        Header,
+        TiendaUser
     },
     data() {
         return {
@@ -144,6 +171,7 @@ export default {
 
     form {
         margin-bottom: 20px;
+        width: 100%;
     }
     
 
@@ -242,6 +270,43 @@ export default {
 
     *:focus {
       outline: none;
+    }
+
+    thead, tr, th {
+        border: 2px solid #d6d1d0;
+    }
+
+    th {
+        padding: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+        -webkit-box-shadow: 17px 21px 5px -4px rgba(5, 5, 5, 0.616);
+        -moz-box-shadow: 17px 21px 5px -4px rgba(5, 5, 5, 0.616);
+        box-shadow: 17px 21px 5px -4px rgba(5, 5, 5, 0.616);
+        margin-bottom: 50px;
+    }
+    fieldset {
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .contenedor-tienda {        
+        width: 85%;
+        max-width: 120rem;
+        /* = 1200px*/
+        margin: 0 auto;
+        font-family: 'Lato', sans-serif;
+    }
+
+    .contenedor-tienda legend{
+        text-align: left;
+        font-size: 30px;
     }
 
 </style>
