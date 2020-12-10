@@ -1,6 +1,23 @@
 <template>
   <div>
-    <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+    <div v-if="tieneTienda">
+        <Header
+            link4="Inicio"
+            link1="Tiendas"
+            link2="Perfil"
+            link3="Cerrar sesión"
+            link6="Administra tu tienda"
+        ></Header>
+        </div>
+        <div v-if="!tieneTienda">
+        <Header
+            link4="Inicio"
+            link1="Tiendas"
+            link2="Perfil"
+            link3="Cerrar sesión"
+            link5="Vende tus productos"
+        ></Header>
+    </div>
     <div class="contenedor seccion contenido-centrado">
       <form action="">
         <fieldset>
@@ -40,6 +57,7 @@
 <script>
 import router from "../router";
 import Header from "../components/Header";
+import { mapState } from "vuex";
 export default {
   components: {
     Header,
@@ -53,7 +71,9 @@ export default {
       },
     };
   },
-  computed: {},
+  computed: {
+    ...mapState(["token", "tieneTienda"]),
+  },
   methods: {
     validar() {
       if (this.tienda.name == "") {

@@ -1,24 +1,52 @@
 <template>
+<div>
 		<tr>
-			<td>{{name}}</td>
-			<td>{{category}}</td>
-			<td>{{admin}}</td>
-			<td>{{country}}</td>
+			<td>{{tienda.name}}</td>
+			<td>{{tienda.category.name}}</td>
+			<td>{{tienda.admin.name}}</td>
+			<td>{{tienda.country}}</td>
 			<td>
-                <router-link to="/Principal" class="button">Comprar</router-link>
+               <button
+                class="boton boton-amarillo d-block"
+                v-on:click="changeStatus()"
+                >
+                Ver productos
+                </button>
 			</td>
 		</tr>
+        <div class="">
+            <div class="contenido-anuncio">
+                <section v-if="status">
+                    <div v-for="item in tienda.productos">            
+                        <tproducto image="img" :name="item.name" :description="item.description" :price="item.price"/>
+                    </div>
+                </section>
+            </div>
+        </div>
+</div>
 </template>
 
 <script>
+import tproducto from "./TarjetaProducto";
 export default {
-	name: 't-list',
+    name: 't-list',
+    components: {
+        tproducto,
+    },
 	props: {
-		name: String,
-		category: String,
-		admin: String,
-		country: String
-	}
+        tienda: Object,
+    },
+    data() {
+        return {
+        status: false,
+        };
+    },
+    methods: {
+        changeStatus() {
+        this.status = !this.status;
+        console.log(this.status);
+        },
+    },
 }
 </script>
 

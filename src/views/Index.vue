@@ -19,9 +19,9 @@
       ></Header>
     </div>
 
-    <div>
+    <!--<div>
       {{ temp }}
-    </div>
+    </div>-->
 
     <div>
       <div class="contador parallax">
@@ -486,7 +486,7 @@ ul {
 
 .card:hover {
   transform: scale(1.1);
-  border: 1px solid var(--naranja);
+  border: 1px solid  #fe4918;
   box-shadow: 0px 0px 50px #666;
 }
 

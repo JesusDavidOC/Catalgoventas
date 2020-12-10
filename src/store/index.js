@@ -117,6 +117,26 @@ export default new Vuex.Store({
                     console.log(error);
                 });
         },
+        async getUser(token) {
+            var data = "";
+
+            var config = {
+                method: 'get',
+                url: 'http://localhost:8000/usuarios/' + token,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+
+            axios(config)
+                .then(function(response) {
+                    return response;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        },
         anadirCarrito({ commit }, producto) {
             commit('anadirItemCarrito', producto)
         },

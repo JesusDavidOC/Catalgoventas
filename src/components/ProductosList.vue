@@ -15,11 +15,10 @@ export default {
 		image: String,
         name: String,
         description: String,
-        price: Number,
-        tienda: String
+        price: Number
     },
     methods: {
-        ...mapActions(['anadirCarrito']),
+        
     }
 }
 </script>

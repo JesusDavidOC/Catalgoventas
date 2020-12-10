@@ -1,8 +1,36 @@
 <template>
     <div>
         <div>
-            <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+            <div v-if="tieneTienda">
+                <Header
+                    link4="Inicio"
+                    link1="Tiendas"
+                    link2="Perfil"
+                    link3="Cerrar sesión"
+                    link6="Administra tu tienda"
+                ></Header>
+                </div>
+                <div v-if="!tieneTienda">
+                <Header
+                    link4="Inicio"
+                    link1="Tiendas"
+                    link2="Perfil"
+                    link3="Cerrar sesión"
+                    link5="Vende tus productos"
+                ></Header>
+            </div>
         </div>
+        <b-container>
+            <b-row>
+                <b-col :sm="12">
+                {{ usuario.nombreUsuario }}
+                {{ usuario.correo }}
+                {{ usuario.contrasena }}
+                {{ usuario.ciudad }}
+                {{ usuario.telefono }}
+                </b-col>
+            </b-row>
+        </b-container>
 
         <div>        
             <div class="contenedor">
@@ -15,12 +43,13 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Correo</th>
+                                        <th>Contraseña</th>
                                         <th>Ciudad</th>
                                         <th>Teléfono</th>
                                     </tr>
                                 </thead>
                                 <tbody class=" ">
-                                    <DatosUser name="Natalia" mail="natalia@gmail.com" country="Manizales" :phone=123456 />
+                                    <DatosUser :name="usuario.nombreUsuario" :mail="usuario.correo" :pass="usuario.contrasena" :country="usuario.ciudad" :phone="usuario.telefono" />
                                 </tbody>
                             </table>
                         </div>
@@ -70,7 +99,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class=" ">
-                                    <TiendaUser name="Camisetas store" category="Moda" country="Manizales"/>
+                                    <TiendaUser :name="tienda.nombreTienda" :category="tienda.categoria.name" :country="tienda.ciudad"/>
                                 </tbody>
                             </table>
                         </div>
@@ -83,6 +112,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import TiendaUser from '../components/TiendaUser'
 import DatosUser from '../components/DatosUser' 
 import Header from '../components/Header'
@@ -92,7 +122,82 @@ export default {
         TiendaUser,
         DatosUser,
         Header
-    }
+    },
+    data() {
+        return {
+            tienda: {
+                nombreTienda: "",
+                categoria: "",
+                ciudad: "",
+            },
+            usuario: {
+                nombreUsuario: "",
+                correo: "",
+                contrasena: "",
+                ciudad: "",
+                telefono: "",
+            },
+        };
+    },
+    computed: {
+        ...mapState(["token", "tieneTienda"]),
+    },
+    methods: {
+        getTienda() {
+            var data = "";
+
+            var config = {
+                method: "get",
+                url: "http://localhost:8000/tiendas/" + localStorage.getItem("token"),
+                headers: {
+                "Content-Type": "application/json",
+                },
+                data: data,
+            };
+
+            const vm = this;
+            axios(config)
+                .then(function (response) {          
+                vm.tienda.nombreTienda = response.data.name;
+                vm.tienda.categoria = response.data.category;
+                vm.tienda.ciudad = response.data.country;
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+        },
+        
+        getUser() {
+            var data = "";
+
+            var config = {
+                method: "get",
+                url: "http://localhost:8000/usuarios/" + localStorage.getItem("token"),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: data,
+            };
+
+            const vm = this;
+            axios(config)
+                .then(function (response) {          
+                vm.usuario.nombreUsuario = response.data.nombre;
+                vm.usuario.correo = response.data.correo;
+                vm.usuario.contrasena = response.data.contrasena;
+                vm.usuario.ciudad = response.data.ciudad;
+                vm.usuario.telefono = response.data.telefono;
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+        },
+    },
+    created() {
+        this.getTienda();
+
+        this.getUser();
+    },
 
 };
 </script>

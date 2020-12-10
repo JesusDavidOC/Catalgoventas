@@ -52,7 +52,7 @@ exports.login = async(req, res) => {
         if (!user) {
             return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
         }
-        const token = await user.generateAuthToken()        
+        const token = await user.generateAuthToken()
         res.status(200).send({ token })
     } catch (error) {
         res.status(400).send(error)
