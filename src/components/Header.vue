@@ -12,11 +12,11 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
+                <router-link class="underlineHover a" to="/Index">{{link4}}</router-link>
                 <router-link class="underlineHover a" to="/Tiendas">{{link1}}</router-link>
                 <router-link class="underlineHover a" to="/Perfil">{{link2}}</router-link>
-                <router-link class="underlineHover a" to="/">{{link3}}</router-link>
-            </nav>
-        </div>
+                <router-link class="underlineHover a" to="/">{{link3}}</router-link>    </nav>
+            </div>
         <!--Contenedor-->
     </div>
 </template>
@@ -28,7 +28,8 @@ export default {
         logo: String,
         link1: String,
         link2: String,
-        link3: String
+        link3: String,
+        link4: String
     }
 }
 </script>

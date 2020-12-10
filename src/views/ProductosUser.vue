@@ -13,9 +13,9 @@
         <h2 class="fw-300 centrar-texto">Tus Productos</h2>
 
         <div class="contenedor-anuncios">
-            <PUser image="../../img/1.jpg" name="Camiseta SASS" description="Camiseta en algodon" price=20000 />
-            <PUser image="../../img/2.jpg" name="Camiseta React" description="Camiseta en algodon" price=20000 />
-            <PUser image="../../img/3.jpg" name="Camiseta Angular" description="Camiseta en algodon" price=20000 />
+            <PUser image="../../img/1.jpg" name="Camiseta SASS" description="Camiseta en algodon" :price=20000 />
+            <PUser image="../../img/2.jpg" name="Camiseta React" description="Camiseta en algodon" :price=20000 />
+            <PUser image="../../img/3.jpg" name="Camiseta Angular" description="Camiseta en algodon" :price=20000 />
         </div>
       </div>
     </div>

@@ -17,13 +17,13 @@ exports.create = (req, res) => {
     });
     // Save the Product in the database
     product.save()
-    .then(data => {
-        res.status(200).send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something wrong occurred while creating the record."
+        .then(data => {
+            res.status(200).send(data);
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something wrong occurred while creating the record."
+            });
         });
-    });    
 };
 // Retrieve and list all Products
 exports.findAll = (req, res) => {
@@ -31,7 +31,14 @@ exports.findAll = (req, res) => {
 };
 // Get a single Product by its id
 exports.findOne = (req, res) => {
-    console.log("Getting a particular product ... soon!");
+    try {
+        const producto = Product.buscarProducto(req.params.nombreTienda, req.params.nombreProducto)
+        console.log(producto)
+    } catch (err) {
+        res.status(400).send({
+            message: err.message || "Not found."
+        });
+    }
 };
 // Update a Product by its id
 exports.update = (req, res) => {

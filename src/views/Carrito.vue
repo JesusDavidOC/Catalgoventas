@@ -18,8 +18,8 @@
                             </tr>
                         </thead>
                         <tbody class=" ">
-                            <Pcarrito image="../../img/3.jpg" name="Camiseta Vue" description="Camiseta en algodon" price='20000' cant=2 />
-                            <Pcarrito image="../../img/7.jpg" name="Camiseta Vue" description="Camiseta en algodon" price='20000' cant=2 />
+                            <Pcarrito image="../../img/3.jpg" name="Camiseta Vue" description="Camiseta en algodon" :price='20000' :cant=2 />
+                            <Pcarrito image="../../img/7.jpg" name="Camiseta Vue" description="Camiseta en algodon" :price='20000' :cant=2 />
                         </tbody>
                     </table>
                     <button class="btn btn-comprar">Comprar</button>
@@ -30,12 +30,19 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import Pcarrito from '../components/CarritoList' 
 import Header from '../components/Header'
 export default {
     components: {
         Pcarrito,
         Header
+    },
+    computed: {
+        ...mapState(['carrito'])
+    },
+    created() {
+        console.log(this.carrito);
     }
 };
 </script>
