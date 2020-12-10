@@ -18,19 +18,22 @@
             image="../../img/1.jpg"
             name="Camiseta Vue"
             description="Camiseta en algodon"
-            price="20.000"
+            :price="20.000"
+            tienda="Camisetas Store"
           ></Tarjeta>
           <Tarjeta
             image="../../img/2.jpg"
             name="Camiseta Angular"
             description="Camiseta en algodon"
-            price="20.000"
+            :price="20.000"
+            tienda="Tienda"
           ></Tarjeta>
           <Tarjeta
             image="../../img/3.jpg"
             name="Camiseta React"
             description="Camiseta en algodon"
-            price="20.000"
+            :price="20.000"
+            tienda="Tienda 1"
           ></Tarjeta>
         </div>
       </div>

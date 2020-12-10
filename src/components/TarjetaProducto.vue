@@ -4,8 +4,9 @@
             <div class="contenido-anuncio">
               <h3>{{name}}</h3>
               <p>{{description}}</p>
+              <p>{{tienda}}</p>
               <p class="precio">{{price}}</p>
-              <button class="boton boton-amarillo d-block">
+              <button class="boton boton-amarillo d-block" v-on:click="anadirCarrito({name, tienda})">
                 Añadir al carrito
               </button>
             </div>
@@ -13,13 +14,21 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
     name: 'Tarjeta',
     props: {
         image: String,
         name: String,
         description: String,
-        price: Number
+        price: Number,
+        tienda: String
+    },
+    methods: {
+        ...mapActions(['anadirCarrito']),
+        buscarProducto(){
+            
+        }
     }
 }
 </script>
