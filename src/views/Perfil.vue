@@ -20,15 +20,41 @@
                                     </tr>
                                 </thead>
                                 <tbody class=" ">
-                                    <DatosUser name="Natalia" mail="natalia@gmail.com" country="Manizales" phone=123456 />
+                                    <DatosUser name="Natalia" mail="natalia@gmail.com" country="Manizales" :phone=123456 />
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <router-link to="/" class="button">Editar</router-link>
+                    <router-link to="/Editar" class="button">Editar</router-link>
                 </fieldset>        
             </div>
         </div>
+
+        <div>
+            <div class="contenedor">
+                <fieldset>
+                     <legend>Cuenta</legend>
+                     <div class="col-sm-12 seccion">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped table-dark" id="dataTableTG">
+                                <thead class="contenedor-Thead">
+                                    <tr>
+                                        <th>Deuda</th>
+                                    </tr>
+                                </thead>
+                                <tbody class=" ">
+                                    <tr>
+                                        <td>90.000</td>
+                                        <td><button class="btn-abonar">Abonar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
         <div>        
             <div class="contenedor">
                 <fieldset>  
@@ -60,6 +86,7 @@
 import TiendaUser from '../components/TiendaUser'
 import DatosUser from '../components/DatosUser' 
 import Header from '../components/Header'
+import { mapState } from "vuex";
 export default {
     components: {
         TiendaUser,
@@ -121,7 +148,7 @@ export default {
         max-width: 800px;
     }
 
-    .button {
+    .button, button {
       background-color: #f78604;
       border: none;
       color: white;
@@ -143,11 +170,11 @@ export default {
       transition: all 0.3s ease-in-out;
     }
 
-    .button:hover {
+    .button:hover, button:hover {
         background-color: #f54a16;
     }
 
-    .button:active {
+    .button:active, button:hover {
         -moz-transform: scale(0.95);
         -webkit-transform: scale(0.95);
         -o-transform: scale(0.95);
@@ -190,5 +217,9 @@ export default {
 
     table {
         width: 100%;
+    }
+
+    .btn-abonar {
+        padding: 10px 20px;
     }
 </style>
