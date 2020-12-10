@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+    <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
 
     <b-container>
       <b-row>
@@ -132,6 +132,7 @@ export default {
       const vm = this;
       axios(config)
         .then(function (response) {
+          console.log(response)
           vm.tienda.nombreTienda = response.data.name;
           vm.tienda.productos = response.data.productos;
           vm.tienda.categoria = response.data.category.name;

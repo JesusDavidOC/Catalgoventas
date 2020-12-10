@@ -1,11 +1,12 @@
 <template>
   <b-container class="home">
-    <b-row>
-      <h1>Ruta protegida</h1>
+    <b-row>      
       <b-row>
-        <div class="col-sm-2">
-          <b-button v-if="tieneTienda">Administra tu tienda</b-button>
-          <b-button v-if="!tieneTienda">Crea tu tienda</b-button>
+        <div class="col-sm-2"  v-if="tieneTienda">
+          <b-button>Administra tu tienda</b-button>        
+        </div>
+        <div class="col-sm-2"  v-if="!tieneTienda">
+          <b-button>Vende tus productos</b-button>        
         </div>
       </b-row>
     </b-row>
