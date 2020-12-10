@@ -3,6 +3,10 @@ node_modules
 /dist
 config/database.config.js
 
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
 
 # local env files
 .env.local

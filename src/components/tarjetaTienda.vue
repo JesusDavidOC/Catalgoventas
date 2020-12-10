@@ -1,6 +1,5 @@
 <template>
 <div>
-  <section>
     <div class="anuncio card">
       <img src="../../img/icono_4.png" alt="" />
       <div class="contenido-anuncio">
@@ -15,11 +14,12 @@
           Ver productos
         </button>
         <section v-if="status">
-            <div v-for="item in tienda.productos">            
+          <div v-for="item in tienda.productos">            
             <tproducto image="img" :name="item.name" :description="item.description" :price="item.price" :tienda="tienda.name   "/>
-            </div>
-        </div>
-    </section>
+          </div>
+        </section>
+      </div>
+    </div>   
     <div class="">
         <div class="contenido-anuncio">
             <section v-if="status">
@@ -29,7 +29,6 @@
             </section>
         </div>
     </div>
-  
 </div>
 </template>
 
