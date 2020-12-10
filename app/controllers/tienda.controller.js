@@ -10,10 +10,10 @@ exports.create = async (req, res) => {
         });
     }
     try {
-        const tienda = (req.body)       
-        const token = req.params.token                       
-        var status = await Tienda.guardar(tienda, token) 
-        console.log(status)              
+        const tienda = (req.body)
+        const token = req.params.token
+        var status = await Tienda.guardar(tienda, token)
+        console.log(status)
         res.status(201).send({ status })
     } catch (error) {
         res.status(400).send(error)
@@ -24,7 +24,7 @@ exports.findAll = (req, res) => {
     console.log("Listing all products ... soon!");
 };
 // Get a single Product by its id
-exports.findOne = async (req, res) => {    
+exports.findOne = async (req, res) => {
     try {
         const tienda = await Tienda.findByAdmin(req.params.token)
         res.status(200).send(tienda)
@@ -33,11 +33,15 @@ exports.findOne = async (req, res) => {
     }
 };
 
-exports.addProducto = async (req, res) => {    
+exports.addParam = async (req, res) => {
     try {
-        const tienda = await Tienda.addProducto("hola",req.body.token)
-        console.log(tienda+"hi")
-        res.status(200).send(tienda)
+        if (req.body.addProducto) {      
+            var productos = await Tienda.getProductos(req.body.token)
+            productos.push(req.body.producto)
+            const tienda = await Tienda.updateProductos(productos, req.body.token)
+            console.log(tienda)
+            res.status(200).send(tienda)
+        }
     } catch (error) {
         res.status(400).send(error)
     }

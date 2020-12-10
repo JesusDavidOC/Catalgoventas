@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const producto = require('./producto.model.js').schema;
+const producto = require('./producto.model.js');
 const user = require('./usuario.model.js');
 
 const CategoriaSchema = mongoose.Schema({
@@ -20,7 +20,7 @@ const TiendaSchema = mongoose.Schema({
         minlength: 4
     },
     productos: [producto],
-    admin: user,
+    admin: user.schema,
     category: CategoriaSchema,
     country: {
         type: String,
@@ -30,7 +30,7 @@ const TiendaSchema = mongoose.Schema({
     timestamps: true
 });
 
-TiendaSchema.statics.findByAdmin = async(token) => {
+TiendaSchema.statics.findByAdmin = async (token) => {
     // Search for a user by email and password.       
     try {
         const tienda = await Store.findOne({ 'admin.token': token })
@@ -40,7 +40,7 @@ TiendaSchema.statics.findByAdmin = async(token) => {
     }
 }
 
-TiendaSchema.statics.updateAdminWithMail = async(mail, token) => {
+TiendaSchema.statics.updateAdminWithMail = async (mail, token) => {
     // Search for a user by email and password.       
     try {
         const tienda = await Store.findOneAndUpdate({ "admin.mail": mail }, {
@@ -54,25 +54,38 @@ TiendaSchema.statics.updateAdminWithMail = async(mail, token) => {
     }
 }
 
-TiendaSchema.statics.updateProductos = async(productoa, token) => {
-    console.log(token)
-        // Search for a user by email and password.    
-    var temp = Store.findByAdmin(token)
+TiendaSchema.statics.updateProductos = async (productoa, token) => {
+    // Search for a user by email and password.    
     try {
-        console.log(token)
-        return temp
-            //return tienda
+        const tienda = await Store.findOneAndUpdate({ "admin.token": token }, {
+            "$set": {
+                'productos': productoa
+            }
+        })
+        
+        return Store.findByAdmin(tienda.admin.token)
     } catch (error) {
         console.log(error)
     }
 }
 
-TiendaSchema.statics.guardar = async(store, token) => {
+TiendaSchema.statics.getProductos = async (token) => {
+    // Search for a user by email and password.    
+    var temp = await Store.findByAdmin(token)
+    try {        
+        return temp.productos
+        //return tienda
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+TiendaSchema.statics.guardar = async (store, token) => {
     // Search for a user by email and password.       
     try {
         console.log(token)
         const usuario = await require('./usuario.model.js').findByToken(token);
-        store.admin = usuario;
+        store.admin = usuario[0];
         const st = new Store(store);
         st.save()
         return st
@@ -81,7 +94,7 @@ TiendaSchema.statics.guardar = async(store, token) => {
     }
 }
 
-TiendaSchema.statics.buscarProducto = async(nombreTienda, nombreProducto) => {
+TiendaSchema.statics.buscarProducto = async (nombreTienda, nombreProducto) => {
 
     try {
         const tienda = await Store.findOne({ 'name': nombreTienda })

@@ -11,7 +11,7 @@ module.exports = (app) => {
 
     // Update a Product by id
 
-    app.put('/tiendas/', tiendas.addProducto);
+    app.put('/tiendas/', tiendas.addParam);
     // Delete a Product by id
     app.delete('/tiendas/:id', tiendas.delete);
 }
