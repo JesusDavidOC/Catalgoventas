@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="camion-de-reparto (1).svg"
+   version="1.1"
+   width="512"
+   viewBox="0 0 64 64"
+   height="512"
+   id="Line">
+  <metadata
+     id="metadata19">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs17" />
+  <sodipodi:namedview
+     inkscape:current-layer="Line"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:cy="217.93309"
+     inkscape:cx="72.802974"
+     inkscape:zoom="1.0507812"
+     showgrid="false"
+     id="namedview15"
+     inkscape:window-height="705"
+     inkscape:window-width="1366"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <g
+     style="fill:#fe4918;fill-opacity:1"
+     id="g12"
+     fill="#151a6a">
+    <path
+       style="fill:#fe4918;fill-opacity:1"
+       id="path6"
+       d="m50.5 21.941-7.07-10.6a3 3 0 0 0 -2.5-1.341h-5.93v-5a3 3 0 0 0 -3-3h-30a1 1 0 0 0 0 2h7v6h-6a1 1 0 0 0 0 2h6v6h-5a1 1 0 0 0 0 2h5v6h-4a1 1 0 0 0 0 2h4v5a3 3 0 0 0 3 3h4.35a6 6 0 1 0 11.3 0h8.7a6 6 0 1 0 11.3 0h.35a3 3 0 0 0 3-3v-9.395a2.989 2.989 0 0 0 -.5-1.664zm-28.5 20.059a4 4 0 1 1 4-4 4 4 0 0 1 -4 4zm0-10a5.983 5.983 0 0 0 -4.46 2h-5.54a1 1 0 0 1 -1-1v-29h21a1 1 0 0 1 1 1v29h-6.54a5.983 5.983 0 0 0 -4.46-2zm20 10a4 4 0 1 1 4-4 4 4 0 0 1 -4 4zm7-9a1 1 0 0 1 -1 1h-1.54a5.973 5.973 0 0 0 -8.92 0h-2.54v-22h5.93a1 1 0 0 1 .832.445l7.07 10.606a.994.994 0 0 1 .168.554z" />
+    <path
+       style="fill:#fe4918;fill-opacity:1"
+       id="path8"
+       d="m40.832 14.445a1 1 0 0 0 -.832-.445h-3a1 1 0 0 0 -1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 .832-1.555zm-2.832 8.555v-7h1.465l4.666 7z" />
+    <path
+       style="fill:#fe4918;fill-opacity:1"
+       id="path10"
+       d="m30 6h-16a1 1 0 0 0 -1 1v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-10a1 1 0 0 0 -1-1zm-3.487 2-4.513 2.821-4.513-2.821zm2.487 8h-14v-7.2l6.47 4.044a1 1 0 0 0 1.06 0l6.47-4.044z" />
+  </g>
+</svg>

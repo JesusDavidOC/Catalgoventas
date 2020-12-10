@@ -61,6 +61,7 @@ export default {
       -ms-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
+	  margin-top: 50px;
     }
 
     button:hover {
