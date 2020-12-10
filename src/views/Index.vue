@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+            <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
         </div>
 
         <div>

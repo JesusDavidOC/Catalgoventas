@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const producto = require('./producto.model.js').schema;
+const producto = require('./producto.model.js');
 const user = require('./usuario.model.js');
 
 const CategoriaSchema = mongoose.Schema({
@@ -20,7 +20,7 @@ const TiendaSchema = mongoose.Schema({
         minlength: 4
     },
     productos: [producto],
-    admin: user,
+    admin: user.schema,
     category: CategoriaSchema,
     country: {
         type: String,

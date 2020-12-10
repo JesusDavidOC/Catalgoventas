@@ -1,13 +1,11 @@
 <template>
     <div>
-        <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+        <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
         <div class="row">
-        <div class="col-sm-9">
+            <div class="col-sm-12">
+                <router-link class="a button" to="/AñadirTienda">Vende tus productos</router-link>
+            </div>
         </div>
-        <div class="col-sm-2">
-            <router-link class="a button" to="/AñadirTienda">Vende tus productos</router-link>
-        </div>
-    </div>
         <div class="row contenedor">            
             <div class="col-sm-12 seccion">
                 <div class="table-responsive">
@@ -93,7 +91,7 @@ export default {
       background-color: #f78604;
       border: none;
       color: white;
-      padding: 15px 90px;
+      padding: 15px 120px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -152,5 +150,4 @@ export default {
         box-shadow: 17px 21px 5px -4px rgba(5, 5, 5, 0.616);
         margin-bottom: 50px;
     }
-
 </style>
