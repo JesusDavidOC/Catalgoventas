@@ -1,4 +1,5 @@
 <template>
+<div>
   <section>
     <div class="anuncio card">
       <img src="../../img/icono_4.png" alt="" />
@@ -17,10 +18,19 @@
             <div v-for="item in tienda.productos">            
             <tproducto image="img" :name="item.name" :description="item.description" :price="item.price" :tienda="tienda.name   "/>
             </div>
-        </section>
-      </div>
+        </div>
+    </section>
+    <div class="">
+        <div class="contenido-anuncio">
+            <section v-if="status">
+                <div v-for="item in tienda.productos">            
+                    <tproducto image="img" :name="item.name" :description="item.description" :price="item.price"/>
+                </div>
+            </section>
+        </div>
     </div>
-  </section>
+  
+</div>
 </template>
 
 <script>
@@ -105,7 +115,7 @@ button:active {
 }
 
 .contenido-anuncio {
-  padding: 2rem 2rem;
+  padding: 2rem 5rem;
 }
 
 .contenido-anuncio h3 {

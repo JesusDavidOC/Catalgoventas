@@ -103,10 +103,10 @@
         </li>
       </ul>
     </section>
-    <section>
+    <section class="contenedor-categorias">
       <div class="contenedor-anuncios row">
-        <div class="col-sm-4 anuncio card" v-for="item in temp" >
-            <TTienda :tienda="item" style="width:30%"/>
+        <div class="col-sm-4" v-for="item in temp" >
+            <TTienda :tienda="item" />
         </div>        
       </div>
     </section>
