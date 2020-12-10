@@ -1,7 +1,7 @@
 const Tienda = require('../models/tienda.model.js');
 const User = require('../models/usuario.model.js');
 // Create and save a new Product
-exports.create = async (req, res) => {
+exports.create = async(req, res) => {
     // Validate if the request's body is empty
     // (does not include required data)    
     if (Object.keys(req.body).length === 0) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+    <Header link4="Inicio" link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
     <div class="contenedor seccion contenido-centrado">
       <form action="">
         <fieldset>
@@ -86,7 +86,7 @@ export default {
 
       axios(config)
         .then(function (response) {
-          router.push("/AñadirProducto");
+          router.push("/Añadir");
         })
         .catch(function (error) {
           console.log(error);
