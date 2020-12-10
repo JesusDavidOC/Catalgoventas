@@ -4,7 +4,7 @@
     <td>{{ producto.name }}</td>
     <td>{{ producto.description }}</td>
     <td>{{ producto.price }}</td>
-    <td>{{ producto.amount }}</td>
+    <td>{{ producto.cantidad }}</td>
     <td>
       <button class="btn btn-danger btn-sm" v-on:click="sumar()">+</button>
     </td>

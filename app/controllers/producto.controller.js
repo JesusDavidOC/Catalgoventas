@@ -1,6 +1,6 @@
 const Product = require('../models/producto.model.js');
 // Create and save a new Product
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     // Validate if the request's body is empty
     // (does not include required data)
     console.log(req.body);

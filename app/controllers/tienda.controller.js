@@ -1,7 +1,7 @@
 const Tienda = require('../models/tienda.model.js');
 const User = require('../models/usuario.model.js');
 // Create and save a new Product
-exports.create = async(req, res) => {
+exports.create = async (req, res) => {
     // Validate if the request's body is empty
     // (does not include required data)    
     if (Object.keys(req.body).length === 0) {
@@ -21,10 +21,10 @@ exports.create = async(req, res) => {
 };
 // Retrieve and list all Products
 exports.findAll = async (req, res) => {
-    try{
-        const tiendas = await Tienda.find({})        
+    try {
+        const tiendas = await Tienda.find({})
         res.status(200).send(tiendas)
-    }catch(err){
+    } catch (err) {
 
     }
 };
@@ -40,15 +40,16 @@ exports.findOne = async (req, res) => {
 
 exports.addParam = async (req, res) => {
     try {
-        if (req.body.addProducto) {      
+        if (req.body.addProducto) {
             var productos = await Tienda.getProductos(req.body.token)
-            productos.push(req.body.producto)
+            productos.push(req.body.producto)            
             const tienda = await Tienda.updateProductos(productos, req.body.token)
             console.log(tienda)
             res.status(200).send(tienda)
-        } else  if(req.body.venderProducto){
-            const tienda = await Tienda.venderProducto(req.body.name, req.body.namep, req.body.cantidad)            
-            res.status(200).send(tienda)
+        } else if (req.body.venderProducto) {
+            const tienda = await Tienda.venderProducto(req.body.name, req.body.namep, req.body.cantidad)
+            const user = await User.requestPayByToken(req.body.token, req.body.monto)
+            res.status(200).send(user)
         }
     } catch (error) {
         res.status(400).send(error)

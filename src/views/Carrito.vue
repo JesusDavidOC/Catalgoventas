@@ -26,10 +26,17 @@
               </tr>
             </thead>
             <tbody class=" ">
-              <Pcarrito :producto="productos[0]" @suma="suma(0)" @resta="resta(0)"/>
+              <Pcarrito
+                v-for="(item, index) in productos"
+                :producto="item"
+                @suma="suma(index)"
+                @resta="resta(index)"
+              />
             </tbody>
           </table>
-          <button class="btn btn-comprar">Comprar</button>
+          <button class="btn btn-comprar" v-on:click="realizarCompra()">
+            Comprar
+          </button>
         </div>
       </div>
     </div>
@@ -37,7 +44,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import Pcarrito from "../components/CarritoList";
 import Header from "../components/Header";
 export default {
@@ -45,8 +52,10 @@ export default {
     Pcarrito,
     Header,
   },
+  mutations: {},
+
   computed: {
-    ...mapState(["carrito"]),
+    ...mapState(["carrito", "token"]),
   },
   data() {
     return {
@@ -54,6 +63,46 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["getCantidad"]),
+
+    async comprar(name1, namep1, cantidad1, token1, monto1) {
+      var data = JSON.stringify({
+        name: name1,
+        venderProducto: true,
+        namep: namep1,
+        cantidad: Number(cantidad1),
+        token: token1,
+        monto: monto1,
+      });
+      var config = {
+        method: "put",
+        url: "http://localhost:8000/tiendas/",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    realizarCompra() {
+      for (let index = 0; index < this.carrito.length; index++) {
+        const element = this.carrito[index];        
+        this.comprar(
+          element.tienda,
+          element.name,
+          element.cantidad,
+          this.token,
+          Number(this.productos[index].price)
+        );
+      }
+    },
     async getProducto(producto, tienda) {
       var config = {
         method: "get",
@@ -62,28 +111,38 @@ export default {
         data: "",
       };
       var vm = this;
-
+      var cant = this.getCantidad(producto, tienda);
       axios(config)
         .then(function (response) {
-          vm.productos.push(response.data);
+          var respon = response.data;
+          respon.cantidad = cant;
+          console.log(respon);
+          vm.productos.push(respon);
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-    suma(pos) {      
-      this.productos[pos].amount = this.productos[pos].amount+1;
+    suma(pos) {
+      this.resta(pos);
+      this.productos[pos].cantidad = this.productos[pos].cantidad + 2;
     },
-    resta(pos) {      
-      this.productos[pos].amount = this.productos[pos].amount-1;
-    }
+    resta(pos) {
+      this.productos[pos].cantidad = this.productos[pos].cantidad - 1;
+    },
+    getCantidad(producto, tienda) {
+      for (let index = 0; index < this.carrito.length; index++) {
+        const element = this.carrito[index];
+        if (element.name == producto && element.tienda == tienda)
+          return element.cantidad;
+      }
+    },
   },
   created() {
     for (let index = 0; index < this.carrito.length; index++) {
       const element = this.carrito[index];
       this.getProducto(element.name, element.tienda);
     }
-
   },
 };
 </script>

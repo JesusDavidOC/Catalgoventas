@@ -173,7 +173,7 @@ export default {
 
       const vm = this;
       axios(config)
-        .then(function (response) {          
+        .then(function (response) {        
           vm.tienda.nombreTienda = response.data.name;
           vm.tienda.productos = response.data.productos;
           vm.tienda.categoria = response.data.category.name;

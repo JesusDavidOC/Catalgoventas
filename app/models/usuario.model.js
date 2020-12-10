@@ -96,6 +96,25 @@ UsuarioSchema.statics.findByToken = async(token) => {
     }
 }
 
+UsuarioSchema.statics.requestPayByToken = async(token, monto) => {
+    // Search for a user by email and password.       
+    try {
+        var user = await User.findOne({
+            'token': token
+        })
+        console.log(user)
+        monto = user.count.credit - monto
+        user = await User.findOneAndUpdate({ "token": token }, {
+            "$set": {
+                'count.credit': monto
+            }
+        })
+        return user;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const User = mongoose.model('Usuario', UsuarioSchema);
 
 module.exports = User
