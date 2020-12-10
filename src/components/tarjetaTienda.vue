@@ -1,36 +1,48 @@
 <template>
-<div>
-  <section>
-    <div class="anuncio card">
-      <img src="../../img/icono_4.png" alt="" />
-      <div class="contenido-anuncio">
-        <h3>{{ tienda.name }}</h3>
-        <p>{{ tienda.category.name }}</p>
-        <p>{{ tienda.country }}</p>
-        <p>{{ tienda.admin.mail }}</p>
-        <button
-          class="boton boton-amarillo d-block"
-          v-on:click="changeStatus()"
-        >
-          Ver productos
-        </button>
-        <section v-if="status">
-            <div v-for="item in tienda.productos">            
-            <tproducto image="img" :name="item.name" :description="item.description" :price="item.price" :tienda="tienda.name   "/>
-            </div>
-        </div>
-    </section>
-    <div class="">
+  <div>
+    <section>
+      <div class="anuncio card">
+        <img src="../../img/icono_4.png" alt="" />
         <div class="contenido-anuncio">
-            <section v-if="status">
-                <div v-for="item in tienda.productos">            
-                    <tproducto image="img" :name="item.name" :description="item.description" :price="item.price"/>
-                </div>
-            </section>
+          <h3>{{ tienda.name }}</h3>
+          <p>{{ tienda.category.name }}</p>
+          <p>{{ tienda.country }}</p>
+          <p>{{ tienda.admin.mail }}</p>
+          <button
+            class="boton boton-amarillo d-block"
+            v-on:click="changeStatus()"
+          >
+            Ver productos
+          </button>
+          <section v-if="status">
+            <div v-for="item in tienda.productos">
+              <tproducto
+                image="img"
+                :name="item.name"
+                :description="item.description"
+                :price="item.price"
+                :tienda="tienda.name"
+              />
+            </div>
+          </section>
         </div>
-    </div>
-  
-</div>
+        <div class="">
+          <div class="contenido-anuncio">
+            <section v-if="status">
+              <div v-for="item in tienda.productos">
+                <tproducto
+                  image="img"
+                  :name="item.name"
+                  :description="item.description"
+                  :price="item.price"
+                />
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>

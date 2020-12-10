@@ -30,10 +30,19 @@ export default new Vuex.Store({
             if (bandera == -1) {
                 state.carrito.push({ name: playload.name, tienda: playload.tienda, cantidad: 1 })
             } else {
-                state.carrito[bandera].cantidad = state.carrito[bandera].cantidad + 1 
+                state.carrito[bandera].cantidad = state.carrito[bandera].cantidad + 1
             }
 
 
+        },
+    },
+    getters: {
+        getCantidad(state, playload) {
+            for (let index = 0; index < state.carrito.length; index++) {
+                const element = state.carrito[index];
+                if (element.name == playload.producto && element.tienda == playload.tienda)
+                    return element.cantidad
+            }
         }
     },
     actions: {
@@ -110,7 +119,7 @@ export default new Vuex.Store({
         },
         anadirCarrito({ commit }, producto) {
             commit('anadirItemCarrito', producto)
-        }
+        },
     },
 
 

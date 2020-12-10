@@ -24,7 +24,7 @@ const ProductoSchema = mongoose.Schema({
 });
 
 ProductoSchema.statics.buscarProducto = async(productName, storeName) => {
-    // Search for a user by email and password.      
+    // Search for a user by email and password.         
     try {
         const producto = await tienda.buscarProducto( productName, storeName)             
         return producto

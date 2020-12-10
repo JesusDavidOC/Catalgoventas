@@ -55,14 +55,14 @@ TiendaSchema.statics.updateAdminWithMail = async (mail, token) => {
 }
 
 TiendaSchema.statics.updateProductos = async (productoa, token) => {
-    // Search for a user by email and password.    
+    // Search for a user by email and password. 
+    console.log("hla")
     try {
         const tienda = await Store.findOneAndUpdate({ "admin.token": token }, {
             "$set": {
                 'productos': productoa
             }
-        })
-
+        })  
         return Store.findByAdmin(tienda.admin.token)
     } catch (error) {
         console.log(error)
@@ -72,7 +72,9 @@ TiendaSchema.statics.updateProductos = async (productoa, token) => {
 TiendaSchema.statics.getProductos = async (token) => {
     // Search for a user by email and password.    
     var temp = await Store.findByAdmin(token)
+    console.log(temp)
     try {
+        
         return temp.productos
         //return tienda
     } catch (error) {
@@ -95,6 +97,7 @@ TiendaSchema.statics.guardar = async (store, token) => {
 }
 
 TiendaSchema.statics.buscarProducto = async (nameStore, nameProduct) => {
+    console.log(nameStore+"...."+nameProduct)
     try {        
         const tienda = await Store.findOne({ 'name': nameStore })
         var producto = tienda.productos
@@ -108,13 +111,13 @@ TiendaSchema.statics.buscarProducto = async (nameStore, nameProduct) => {
     }
 }
 
-TiendaSchema.statics.venderProducto = async (nameStore, nameProduct, amount) => {
+TiendaSchema.statics.venderProducto = async (nameStore, nameProduct, cantidad) => {
     try {        
         var tienda = await Store.findOne({ 'name': nameStore })
         var producto = tienda.productos
         for (let index = 0; index < producto.length; index++) {
             if (producto[index].name == nameProduct) {
-                producto[index].amount = producto[index].amount-amount;
+                producto[index].amount = producto[index].amount-cantidad;
                 break;
             }
         }
