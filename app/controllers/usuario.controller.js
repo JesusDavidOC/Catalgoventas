@@ -1,7 +1,7 @@
 const usuario = require('../models/usuario.model.js');
 const bcrypt = require('bcryptjs')
-// Create and save a new Product
-exports.create = async (req, res) => {
+    // Create and save a new Product
+exports.create = async(req, res) => {
     // Validate if the request's body is empty
     // (does not include required data)
     if (Object.keys(req.body).length === 0) {
@@ -36,16 +36,16 @@ exports.findOne = (req, res) => {
 };
 
 
-exports.findWhitToken = async (req, res) => {    
-    try {        
-        const user = await usuario.findByToken(req.params.token)  
-        res.status(200).send({nombre: user[0].name, correo: user[0].mail})  
+exports.findWhitToken = async(req, res) => {
+    try {
+        const user = await usuario.findByToken(req.params.token)
+        res.status(200).send({ nombre: user[0].name, correo: user[0].mail })
     } catch (error) {
         res.status(400).send(error)
     }
 };
 
-exports.login = async (req, res) => {
+exports.login = async(req, res) => {
 
     try {
         const { mail, pass } = req.body
