@@ -20,8 +20,13 @@ exports.create = async(req, res) => {
     }
 };
 // Retrieve and list all Products
-exports.findAll = (req, res) => {
-    console.log("Listing all products ... soon!");
+exports.findAll = async (req, res) => {
+    try{
+        const tiendas = await Tienda.find({})        
+        res.status(200).send(tiendas)
+    }catch(err){
+
+    }
 };
 // Get a single Product by its id
 exports.findOne = async (req, res) => {

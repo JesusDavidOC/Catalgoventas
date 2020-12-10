@@ -95,7 +95,7 @@ export default {
     ...mapState(["token"]),
   },
   methods: {
-    validar() {
+    async validar() {
       if (this.producto.image == "") {
         alert("Debe seleccionar una imágen");
       } else if (this.producto.name == "") {
@@ -113,8 +113,8 @@ export default {
           alert("En el campo cantidad debe ingresar un valor numérico");
         }
       } else {
-          this.addProducto()
-          this.getTienda()
+          await this.addProducto()
+          await this.getTienda()
       }
     },
     getTienda() {
@@ -131,8 +131,7 @@ export default {
 
       const vm = this;
       axios(config)
-        .then(function (response) {
-          console.log(response)
+        .then(function (response) {          
           vm.tienda.nombreTienda = response.data.name;
           vm.tienda.productos = response.data.productos;
           vm.tienda.categoria = response.data.category.name;
