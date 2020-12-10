@@ -8,8 +8,10 @@ module.exports = (app) => {
     //login with mail an pass    
     // Get a single Product by id
     app.get('/tiendas/:token', tiendas.findOne);
+
     // Update a Product by id
-    app.put('/tiendas/:id', tiendas.update);
+
+    app.put('/tiendas/', tiendas.addProducto);
     // Delete a Product by id
     app.delete('/tiendas/:id', tiendas.delete);
 }

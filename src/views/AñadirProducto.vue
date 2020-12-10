@@ -1,113 +1,158 @@
 <template>
-    <div>
-        <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
-        <div>        
-            <div class="contenedor-tienda">
-                <fieldset>  
-                    <legend>Datos de la tienda</legend>  
-                    <div class="col-sm-12 seccion">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped table-dark" id="dataTableTG">
-                                <thead class="contenedor-Thead">
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Categoría</th>
-                                        <th>Ciudad</th>
-                                    </tr>
-                                </thead>
-                                <tbody class=" ">
-                                    <TiendaUser name="Camisetas store" category="Moda" country="Manizales"/>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <router-link to="/ProductosUser" class="button">Ver Productos</router-link>
-                </fieldset>        
+  <div>
+    <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
+
+    <b-container>
+      <b-row>
+        <b-col :sm="12">
+          {{ tienda.nombreTienda }}
+          {{ tienda.productos }}
+          {{ tienda.categoria }}
+          {{ tienda.ciudad }}
+
+        </b-col>
+      </b-row>
+    </b-container>
+
+    <div class="contenedor seccion contenido-centrado">
+      <form action="">
+        <fieldset>
+          <legend>Información del producto</legend>
+
+          <label for="name">Imágen:</label>
+          <div class="forma-contacto">
+            <div class="image">
+              <input
+                type="text"
+                id="name"
+                required=""
+                v-model="producto.image"
+              />
             </div>
-        </div>
-        <div class="contenedor seccion contenido-centrado">
+            <button class="btn-seleccionar">Seleccionar</button>
+          </div>
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" required="" v-model="producto.name" />
 
-            <form action="">
-                <fieldset>
+          <label for="desciption">Descripción:</label>
+          <input
+            type="text"
+            id="descrption"
+            required=""
+            v-model="producto.description"
+          />
 
-                    <legend>Información del producto</legend>
+          <label for="price">Precio:</label>
+          <input
+            type="Number"
+            id="price"
+            required=""
+            v-model="producto.price"
+          />
 
-                    <label for="name">Imágen:</label>
-                    <div class="forma-contacto">
-                        <div class="image"><input type="text" id="name" required="" v-model="producto.image"></div>
-                        <button class="btn-seleccionar">Seleccionar</button>
-                    </div>
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" required="" v-model="producto.name">
-
-                    <label for="desciption">Descripción:</label>
-                    <input type="text" id="descrption" required="" v-model="producto.description">
-
-                    <label for="price">Precio:</label>
-                    <input type="Number" id="price" required="" v-model="producto.price">
-
-                    <label for="amount">Cantidad disponible:</label>
-                    <input type="Number" id="amount" required="" v-model="producto.amount">
-
-                    <div class="">
-                        <router-link class="a button" to="/Principal">Atrás</router-link>
-                        <button class="btn btn-comprar" v-on:click="validar()">Añadir</button>
-                    </div>
-
-                </fieldset>
-            </form>
-        </div>
+          <label for="amount">Cantidad disponible:</label>
+          <input
+            type="Number"
+            id="amount"
+            required=""
+            v-model="producto.amount"
+          />
+        </fieldset>
+      </form>
+      <div class="">
+        <router-link class="a button" to="/Principal">Atrás</router-link>
+        <button class="btn btn-comprar" v-on:click="validar()">Añadir</button>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
-import TiendaUser from '../components/TiendaUser'
-import Header from '../components/Header'
+import Header from "../components/Header";
+import { mapState } from "vuex";
 export default {
-    components: {
-        Header,
-        TiendaUser
-    },
-    data() {
-        return {
-            producto:{
-                image: "",
-                name: "",
-                description: "",
-                price: "",
-                cant: ""
-            }
-        };
-    },
-    computed: {},
-    methods: {
-
-    validar() {
-        if(this.producto.image==""){
-            alert("Debe seleccionar una imágen");
-        }
-        if(this.producto.name==""){
-            alert("El campo Nombre no debe estar vacío");
-        }
-        if(this.productousuario.description==""){
-            alert("El campo Descripción no debe estar vacío");
-        }
-        if(this.producto.price==""){
-            alert("El campo Precio no debe estar vacío");
-        }else if(this.producto.price!=Number){
-            alert("En el campo Precio debe ingresar un valor numérico");
-        }
-        if(this.producto.cant==""){
-            alert("El campo Cantidad no debe estar vacío");
-        }else if(this.producto.cant!=Number){
-            alert("En el campo Cantidad debe ingresar un valor numérico");
-        }
-    },
+  components: {
+    Header,
   },
+  data() {
+    return {
+      tienda: {
+        nombreTienda: "",
+        productos: [],
+        categoria: "",
+        ciudad: "",
+      },
+      producto: {
+        image: "",
+        name: "",
+        description: "",
+        price: "",
+        cant: "",
+      },
+    };
+  },
+  computed: {
+    ...mapState(["token"]),
+  },
+  methods: {
+    validar() {
+      if (this.producto.image == "") {
+        alert("Debe seleccionar una imágen");
+      }
+      if (this.producto.name == "") {
+        alert("El campo Nombre no debe estar vacío");
+      }
+      if (this.productousuario.description == "") {
+        alert("El campo Descripción no debe estar vacío");
+      }
+      if (this.producto.price == "") {
+        alert("El campo Precio no debe estar vacío");
+      } else if (this.producto.price != Number) {
+        alert("En el campo Precio debe ingresar un valor numérico");
+      }
+      if (this.producto.cant == "") {
+        alert("El campo Cantidad no debe estar vacío");
+      } else if (this.producto.cant != Number) {
+        alert("En el campo Cantidad debe ingresar un valor numérico");
+      }
+    },
+    getTienda() {
+      var data = "";
+
+      var config = {
+        method: "get",
+        url: "http://localhost:8000/tiendas/" + localStorage.getItem("token"),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+
+      const vm = this;
+      axios(config)
+        .then(function (response) {
+          vm.tienda.nombreTienda = response.data.name;
+          vm.tienda.productos = response.data.productos;
+          vm.tienda.categoria = response.data.category.name;
+          vm.tienda.ciudad = response.data.country;          
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    setTiendaName(name) {
+      console.log(name);
+    },
+    addProducto(){
+
+    }
+  },
+  created() {
+    this.getTienda();
+  },
+  
 };
-
-
 </script>
 
 <style scoped>
