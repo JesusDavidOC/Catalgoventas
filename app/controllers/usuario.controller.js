@@ -50,11 +50,12 @@ exports.login = async (req, res) => {
     try {
         const { mail, pass } = req.body
         const user = await usuario.findByCredentials(mail, pass)
+        console.log(user)
         if (!user) {
             return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
         }
-        const token = await user.generateAuthToken()
-        res.send({ token })
+        const token = await user.generateAuthToken()        
+        res.status(200).send({ token })
     } catch (error) {
         res.status(400).send(error)
     }

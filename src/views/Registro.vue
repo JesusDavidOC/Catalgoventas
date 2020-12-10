@@ -56,49 +56,53 @@
 
 <script>
 import axios from "axios";
-import router from '../router'
-import store from '../store'
-import {mapActions} from 'vuex'
+import router from "../router";
+import store from "../store";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      usuario:{
-          name: "asdasdasd",
-          mail: "asdaasdasdsd@gmail.com",
-          pass: "12345678",
-          country: "casa",
-          phone: "12345678"
-      }
+      usuario: {
+        name: "asdasdasd",
+        mail: "asdaasdasdsd@gmail.com",
+        pass: "12345678",
+        country: "casa",
+        phone: "12345678",
+      },
     };
   },
   computed: {},
   methods: {
-      ...mapActions(['login']),
+    ...mapActions(["login"]),
     validar() {
-        if(this.usuario.name==""){
-            alert("El campo nombre no debe estar vacío");
+      if (this.usuario.name == "") {
+        alert("El campo nombre no debe estar vacío");
+      } else if (this.usuario.mail == "") {
+        alert("El campo correo no debe estar vacío");
+      } else if (this.usuario.pass == "") {
+        alert("El campo contraseña no debe estar vacío");
+      } else if (this.usuario.country == "") {
+        alert("El campo ciudad no debe estar vacío");
+      } else if (this.usuario.phone == "") {
+        alert("El campo teléfono no debe estar vacío");
+        if (isNaN(this.usuario.phone)) {
+          alert("En el campo Teléfono debe ingresar un valor numérico");
         }
-        else if(this.usuario.mail==""){
-            alert("El campo correo no debe estar vacío");
-        }
-        else if(this.usuario.pass==""){
-            alert("El campo contraseña no debe estar vacío");
-        }
-        else if(this.usuario.country==""){
-            alert("El campo ciudad no debe estar vacío");
-        }
-        else if(this.usuario.phone==""){
-            alert("El campo teléfono no debe estar vacío");
-        }else if(this.usuario.phone!=Number){
-            alert("En el campo Teléfono debe ingresar un valor numérico");
-        } else {
-            this.send()
-        }
+      } else {
+        this.send();
+      }
     },
-    
-    async send () {
-      var data = JSON.stringify({ name: this.usuario.name, count:{credit: 0}, mail: this.usuario.mail, pass: this.usuario.pass, country: this.usuario.country, phone: this.usuario.phone});
-    const passw = this.usuario.pass
+
+    async send() {
+      var data = JSON.stringify({
+        name: this.usuario.name,
+        count: { credit: 0 },
+        mail: this.usuario.mail,
+        pass: this.usuario.pass,
+        country: this.usuario.country,
+        phone: this.usuario.phone,
+      });
+      const passw = this.usuario.pass;
       var config = {
         method: "post",
         url: "http://localhost:8000/usuarios",
@@ -109,10 +113,10 @@ export default {
       };
 
       axios(config)
-        .then(function (response) {            
-            response.data.user.pass = passw          
-            store.dispatch('login', response.data.user);
-            router.push('/')
+        .then(function (response) {
+          response.data.user.pass = passw;
+          store.dispatch("login", response.data.user);
+          router.push("/");
         })
         .catch(function (error) {
           console.log(error);

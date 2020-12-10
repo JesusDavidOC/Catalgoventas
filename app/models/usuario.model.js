@@ -56,9 +56,13 @@ UsuarioSchema.pre('save', async function (next) {
 UsuarioSchema.methods.generateAuthToken = async function () {
     // Generate an auth token for the user
     const user = this
-    const token = jwt.sign({ _id: user._id }, "WinterIsComingGOT2019")
-    user.token = token
-    await tienda.updateAdminWithMail(user.mail, token)
+    const token = jwt.sign({ _id: user._id }, "WinterIsComingGOT2019")    
+    user.token = token    
+    try{        
+        await require('./tienda.model.js').updateAdminWithMail(user.mail, token)        
+    }catch(err){
+        console.log(err)
+    }
     await user.save()
     return token
 }
@@ -66,15 +70,14 @@ UsuarioSchema.methods.generateAuthToken = async function () {
 UsuarioSchema.statics.findByCredentials = async (mail, pass) => {
     // Search for a user by email and password.        
     try{
-        const user = await User.findOne({ 'mail': mail })
-        console.log(user)
+        const user = await User.findOne({ 'mail': mail })        
         if (!user) {
             throw new Error({ error: 'Invalid login credentials' })
         }
         const isPasswordMatch = await bcrypt.compare(pass, user.pass)
         if (!isPasswordMatch) {
             throw new Error({ error: 'Invalid login credentials' })
-        }
+        }        
         return user
     } catch(error){
         console.log(error)
