@@ -33,7 +33,7 @@ const TiendaSchema = mongoose.Schema({
 TiendaSchema.statics.findByAdmin = async (token) => {
     // Search for a user by email and password.       
     try {
-        const tienda = await Store.findOne({ 'admin.token': token })        
+        const tienda = await Store.findOne({ 'admin.token': token })
         return tienda
     } catch (error) {
         console.log(error)
@@ -42,12 +42,12 @@ TiendaSchema.statics.findByAdmin = async (token) => {
 
 TiendaSchema.statics.updateAdminWithMail = async (mail, token) => {
     // Search for a user by email and password.    
-    try {        
+    try {
         const tienda = await Store.findOneAndUpdate({ "admin.mail": mail }, {
             "$set": {
                 'admin.token': token
             }
-        })               
+        })
         return tienda
     } catch (error) {
         console.log(error)
@@ -62,7 +62,7 @@ TiendaSchema.statics.updateProductos = async (productoa, token) => {
                 'productos': productoa
             }
         })
-        
+
         return Store.findByAdmin(tienda.admin.token)
     } catch (error) {
         console.log(error)
@@ -72,7 +72,7 @@ TiendaSchema.statics.updateProductos = async (productoa, token) => {
 TiendaSchema.statics.getProductos = async (token) => {
     // Search for a user by email and password.    
     var temp = await Store.findByAdmin(token)
-    try {        
+    try {
         return temp.productos
         //return tienda
     } catch (error) {
@@ -94,16 +94,36 @@ TiendaSchema.statics.guardar = async (store, token) => {
     }
 }
 
-TiendaSchema.statics.buscarProducto = async (nombreTienda, nombreProducto) => {
-
-    try {
-        const tienda = await Store.findOne({ 'name': nombreTienda })
+TiendaSchema.statics.buscarProducto = async (nameStore, nameProduct) => {
+    try {        
+        const tienda = await Store.findOne({ 'name': nameStore })
         var producto = tienda.productos
-        for (item in producto) {
-            if (item.name == nombreProducto) {
-                return producto
+        for (let index = 0; index < producto.length; index++) {
+            if (producto[index].name == nameProduct) {
+                return producto[index]
             }
         }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+TiendaSchema.statics.venderProducto = async (nameStore, nameProduct, amount) => {
+    try {        
+        var tienda = await Store.findOne({ 'name': nameStore })
+        var producto = tienda.productos
+        for (let index = 0; index < producto.length; index++) {
+            if (producto[index].name == nameProduct) {
+                producto[index].amount = producto[index].amount-amount;
+                break;
+            }
+        }
+        tienda = await Store.findOneAndUpdate({ "name": nameStore }, {
+            "$set": {
+                'productos': producto
+            }
+        })
+        return tienda;
     } catch (error) {
         console.log(error)
     }

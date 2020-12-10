@@ -15,7 +15,7 @@
         </button>
         <section v-if="status">
             <div v-for="item in tienda.productos">            
-            <tproducto image="img" :name="item.name" :description="item.description" :price="item.price"/>
+            <tproducto image="img" :name="item.name" :description="item.description" :price="item.price" :tienda="tienda.name   "/>
             </div>
         </section>
       </div>

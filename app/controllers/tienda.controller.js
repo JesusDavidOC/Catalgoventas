@@ -46,6 +46,9 @@ exports.addParam = async (req, res) => {
             const tienda = await Tienda.updateProductos(productos, req.body.token)
             console.log(tienda)
             res.status(200).send(tienda)
+        } else  if(req.body.venderProducto){
+            const tienda = await Tienda.venderProducto(req.body.name, req.body.namep, req.body.cantidad)            
+            res.status(200).send(tienda)
         }
     } catch (error) {
         res.status(400).send(error)
