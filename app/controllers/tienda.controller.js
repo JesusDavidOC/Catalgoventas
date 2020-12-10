@@ -31,6 +31,16 @@ exports.findOne = async (req, res) => {
         res.status(400).send(error)
     }
 };
+
+exports.addProducto = async (req, res) => {    
+    try {
+        const tienda = await Tienda.addProducto("hola",req.body.token)
+        console.log(tienda+"hi")
+        res.status(200).send(tienda)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+};
 // Update a Product by its id
 exports.update = (req, res) => {
     console.log("Updating a particular product ... soon!");
