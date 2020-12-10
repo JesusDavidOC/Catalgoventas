@@ -44,7 +44,7 @@ const UsuarioSchema = mongoose.Schema({
     timestamps: true
 });
 
-UsuarioSchema.pre('save', async function (next) {
+UsuarioSchema.pre('save', async function(next) {
     // Hash the password before saving the user model
     const user = this
     if (user.isModified('pass')) {
@@ -53,47 +53,47 @@ UsuarioSchema.pre('save', async function (next) {
     next()
 });
 
-UsuarioSchema.methods.generateAuthToken = async function () {
+UsuarioSchema.methods.generateAuthToken = async function() {
     // Generate an auth token for the user
     const user = this
-    const token = jwt.sign({ _id: user._id }, "WinterIsComingGOT2019")    
-    user.token = token    
-    try{        
-        await require('./tienda.model.js').updateAdminWithMail(user.mail, token)        
-    }catch(err){
+    const token = jwt.sign({ _id: user._id }, "WinterIsComingGOT2019")
+    user.token = token
+    try {
+        await require('./tienda.model.js').updateAdminWithMail(user.mail, token)
+    } catch (err) {
         console.log(err)
     }
     await user.save()
     return token
 }
 
-UsuarioSchema.statics.findByCredentials = async (mail, pass) => {
+UsuarioSchema.statics.findByCredentials = async(mail, pass) => {
     // Search for a user by email and password.        
-    try{
-        const user = await User.findOne({ 'mail': mail })        
+    try {
+        const user = await User.findOne({ 'mail': mail })
         if (!user) {
             throw new Error({ error: 'Invalid login credentials' })
         }
         const isPasswordMatch = await bcrypt.compare(pass, user.pass)
         if (!isPasswordMatch) {
             throw new Error({ error: 'Invalid login credentials' })
-        }        
+        }
         return user
-    } catch(error){
+    } catch (error) {
         console.log(error)
-    }    
+    }
 }
 
-UsuarioSchema.statics.findByToken = async (token) => {
+UsuarioSchema.statics.findByToken = async(token) => {
     // Search for a user by email and password.       
-    try{
+    try {
         const user = await User.find({
             'token': token
         })
         return user;
-    } catch(error){
+    } catch (error) {
         console.log(error)
-    }    
+    }
 }
 
 const User = mongoose.model('Usuario', UsuarioSchema);
