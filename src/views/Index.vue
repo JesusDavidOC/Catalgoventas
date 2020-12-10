@@ -20,6 +20,10 @@
     </div>
 
     <div>
+      {{ temp }}
+    </div>
+
+    <div>
       <div class="contador parallax">
         <div class="contenedor">
           <ul class="resumen-evento clearfix">
@@ -50,7 +54,7 @@
       <h2>Categorías</h2>
       <ul class="lista-invitados clearfix">
         <li>
-          <a>
+          <a v-on:click="getTipoTiendas('Moda')">
             <div class="invitado">
               <img src="../../img/moda.jpg" alt="Imagen Moda" />
               <p>Moda</p>
@@ -99,6 +103,13 @@
         </li>
       </ul>
     </section>
+    <section>
+      <div class="contenedor-anuncios row">
+        <div class="col-sm-4" v-for="item in temp" >
+            <TTienda :tienda="item" style="width:30%"/>
+        </div>        
+      </div>
+    </section>
   </div>
 </template>
 
@@ -106,10 +117,18 @@
 import { mapActions, mapState } from "vuex";
 import Tlist from "../components/TiendasList";
 import Header from "../components/Header";
+import TTienda from "../components/tarjetaTienda";
 export default {
+  data() {
+    return {
+      tiendas: [],
+      temp: [],
+    };
+  },
   components: {
     Header,
     Tlist,
+    TTienda,
   },
   computed: {
     ...mapState(["token", "tieneTienda"]),
@@ -132,6 +151,36 @@ export default {
           console.log(error);
         });
     },
+    async getTiendas() {
+      var config = {
+        method: "get",
+        url: "http://localhost:8000/tiendas/",
+        headers: {},
+        data: "",
+      };
+      var vm = this;
+
+      axios(config)
+        .then(function (response) {
+          vm.tiendas = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    getTipoTiendas(tipo) {
+      var temp = [];
+      for (let index = 0; index < this.tiendas.length; index++) {
+        const element = this.tiendas[index];
+        if (element.category.name == tipo) {
+          temp.push(element);
+        }
+      }
+      this.temp = temp;
+    },
+  },
+  created() {
+    this.getTiendas();
   },
 };
 </script>
