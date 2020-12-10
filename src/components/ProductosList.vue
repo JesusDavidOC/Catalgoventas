@@ -1,23 +1,26 @@
 <template>
 		<tr>
-			<td><img src="../../img/7.jpg" alt="Producto 1"></td>
+			<td><img src="../../img/7.jpg" alt="Producto 1"></td>            
 			<td>{{name}}</td>
 			<td>{{description}}</td>
 			<td>{{price}}</td>
-			<td>{{cant}}</td>
 		</tr>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
 	name: 'p-list',
 	props: {
 		image: String,
-		name: String,
-		description: String,
-		price: Number,
-		cant: Number
-	}
+        name: String,
+        description: String,
+        price: Number,
+        tienda: String
+    },
+    methods: {
+        ...mapActions(['anadirCarrito']),
+    }
 }
 </script>
 
@@ -28,7 +31,7 @@ export default {
 	}
 
 	img {
-		max-width: 50%;
+		max-width: 20%;
 		padding: 0 0 0 0;
 		margin: 0 auto;
 	}
@@ -68,7 +71,7 @@ export default {
     }
 
 	td {
-		padding: 20px;
+		padding: 10px;
 	}
 
 	*:focus {

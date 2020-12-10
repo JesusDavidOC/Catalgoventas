@@ -1,31 +1,31 @@
 <template>
   <div>
     <Header link1="Tiendas" link2="Perfil" link3="Cerrar sesión"></Header>
-    <div>
-        <div class="row contenedor">            
+    <div>   
+        <div class="row contenedor">    
             <div class="col-sm-12 seccion">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped table-dark" id="dataTableTG">
                         <thead class="contenedor-Thead">
                             <tr>
+                                <th class="name-tienda">{{tienda.nombreTienda}}</th>
+                            </tr>
+                            <tr>
                                 <th>Producto</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Precio</th>
-                                <th>Cantidad</th>
                             </tr>
                         </thead>
-                        <tbody class=" ">
-                            <Plist image="../../img/3.jpg" name="Camiseta vue" description="Camiseta en algodon" :price=20000 :cant=2 />
-                            <Plist image="../../img/7.jpg" name="Camiseta Vue" description="Camiseta en algodon" :price=20000 :cant=2 />
+                        <tbody class=" " v-for="item in tienda.productos">                          
+                            <Plist image="img" :name="item.name" :description="item.description" :price="item.price" />
                         </tbody>
                     </table>
-                    <button class="btn btn-comprar">Comprar</button>
                 </div>
             </div>
         </div>
     </div>
-    <b-container>
+    <!--<b-container>
       <b-row>
         <b-col :sm="12">
           {{ tienda.nombreTienda }}
@@ -34,7 +34,7 @@
           {{ tienda.ciudad }}
         </b-col>
       </b-row>
-    </b-container>
+    </b-container>-->
 
     <div class="contenedor seccion contenido-centrado">
       <form action="">
@@ -392,7 +392,11 @@ fieldset {
 }
 
 table {
-  width: 50%;
+  width: 95%;
+}
+
+.table-responsive {
+  align-items: center;
 }
 
 .contenedor-tienda {
@@ -406,5 +410,9 @@ table {
 .contenedor-tienda legend {
   text-align: left;
   font-size: 30px;
+}
+
+.name-tienda {
+  font-size: 20px;
 }
 </style>
